@@ -1,0 +1,53 @@
+---
+import { Icon } from 'astro-icon';
+import {
+	Button,
+	StickyTextImageSection,
+	CtaCardSection,
+} from '@littlesticks/odyssey-theme-components';
+import Layout from '../layouts/Page.astro';
+
+const seo = {
+	title: 'Aaron Swartz',
+	description: 'Learn about who Aaron Swartz was and what he stood for.',
+};
+---
+
+<Layout {seo}>
+	<StickyTextImageSection>
+		<div slot="text-container">
+			<h2>Features</h2>
+			<h3>SEO</h3>
+			<p>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Est dolorem
+				tempore odio! Nemo consectetur ipsa aperiam similique maxime maiores
+				consequatur explicabo ut quibusdam fugiat corporis, dignissimos tenetur,
+				mollitia cumque. Velit. Lorem ipsum dolor sit amet consectetur
+				adipisicing elit. Est dolorem tempore odio! Nemo consectetur ipsa
+				aperiam similique maxime maiores consequatur explicabo ut quibusdam
+				fugiat corporis, dignissimos tenetur, mollitia cumque. Velit.
+			</p>
+			<h3>Responsive</h3>
+			<p>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Est dolorem
+				tempore odio! Nemo consectetur ipsa aperiam similique maxime maiores
+				consequatur explicabo ut quibusdam fugiat corporis, dignissimos tenetur,
+				mollitia cumque. Velit.
+			</p>
+			<h3>Themeable</h3>
+			<p>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Est dolorem
+				tempore odio! Nemo consectetur ipsa aperiam similique maxime maiores
+				consequatur explicabo ut quibusdam fugiat corporis, dignissimos tenetur,
+				mollitia cumque. Velit.
+			</p>
+		</div>
+		<picture slot="image-container">
+			<img
+				src="/assets/images/aaron_swartz_2.jpeg"
+				alt="Astro Odyssey"
+				loading="lazy"
+			/>
+		</picture>
+	</StickyTextImageSection>
+</Layout>
