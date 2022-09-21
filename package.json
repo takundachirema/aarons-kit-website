@@ -1,10 +1,10 @@
 {
-	"name": "odyssey-theme",
-	"version": "2.0.0",
-	"private": false,
+	"name": "aarons-kit-website",
+	"version": "1.0.0",
+	"private": true,
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:littlesticksdev/odyssey-theme"
+		"url": "git@github.com/FinHubSA/aarons-kit-website"
 	},
 	"scripts": {
 		"dev": "astro dev",
