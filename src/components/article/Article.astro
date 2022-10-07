@@ -1,0 +1,81 @@
+---
+import { Icon } from 'astro-icon';
+
+import {
+    Container,
+    Button
+} from '@littlesticks/odyssey-theme-components';
+
+import '../../styles/search.css';
+
+const {article} = Astro.props;
+var counter = 0
+---
+
+<div narrow={true}
+    <div class='article__title'>
+        <h4>{article.title}</h4>
+    </div>
+    <div data-theme="sand"  class='article__id'>
+        <p>{article.articleJstorID}</p>
+    </div>
+    <div class='article__authors'>
+        {article.authors?.map((author, index) => (
+            <p>{author.authorName} {index != (article.authors.length - 1) && <span> , </span>}</p>
+        ))}
+    </div>
+    <div class='article__abstract'>
+        <p>{article.abstract}</p>
+    </div>
+    <div class='article__actions'>
+        {
+            article.bucketURL && 
+            <Button href={article.bucketURL} customIcon>
+                Download
+                <Fragment slot="icon">
+                    <Icon name="ic:baseline-download" />
+                </Fragment>
+            </Button>
+        }
+    </div>
+    <hr/>
+</div>
+
+<style>
+    hr {
+        display: block;
+        height: 1px;
+        border: 2;
+        border-top: 1px solid;
+        border-color: var(--theme-surface-1);
+        margin: 1em 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .article__authors p {
+        display: inline;
+        font-family: var(--theme-font-family-sans);
+        font-size: var(--font-size-sm);
+        color: var(--theme-primary-hover);
+        font-style: italic;
+    }
+
+    .article__id p {
+        display: inline;
+        font-family: var(--theme-font-family-sans);
+        font-size: var(--font-size-sm);
+        color: var(--theme-surface-2);
+        font-style: italic;
+    }
+
+    .article__abstract p {
+        display: -webkit-box;
+        font-family: var(--theme-font-family-sans);
+        font-size: var(--font-size-sm);
+        color: var(--theme-on-bg);
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>

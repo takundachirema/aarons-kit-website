@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Page.astro';
+import SearchBar from '../components/search/SearchBar.astro';
+import Article from '../components/article/Article.astro';
+
+import { Icon } from 'astro-icon';
+import {
+	Container,
+	AnnouncementBar,
+} from '@littlesticks/odyssey-theme-components';
+
+import '../styles/article.css';
+
+const seo = {
+	title: 'Search',
+	description: 'Search for papers',
+};
+
+const category = Astro.url.searchParams.get('category')! || '';
+const query = Astro.url.searchParams.get('query')! || '';
+const page = Astro.url.searchParams.get('page')! || '0';
+
+var api = "https://api-service-mrz6aygprq-oa.a.run.app/api/";
+
+if (category.toLowerCase() === 'title'){
+	api = api+'articles?title='+query;
+}else if (category.toLowerCase() === 'author'){
+	api = api+'articles?authorname='+query;
+}else if (category.toLowerCase() === 'journal'){
+	api = api+'articles?journalname='+query;
+}
+
+console.log(" ** params ** ", category +" "+query+" "+api);
+
+const response = await fetch(api);
+
+var articles = []
+if (response.status === 200) {
+	articles = await response.json();
+}
+
+console.log('** article size **', articles.length)
+---
+
+<Layout {seo}>
+	<SearchBar category={category} query={query} page={page}></SearchBar>
+
+	<Container narrow={true}>
+		{articles?.map((article) => (
+			<Article article={article}></Article>
+		))}
+	</Container>
+
+</Layout>

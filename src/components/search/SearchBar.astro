@@ -1,0 +1,167 @@
+---
+import { Icon } from 'astro-icon';
+
+import {
+    Container,
+    Button,
+    FormInput,
+    FormSelect,
+} from '@littlesticks/odyssey-theme-components';
+
+import '../../styles/search.css';
+
+const {category, query, page} = Astro.props;
+---
+
+<Container>
+    <div class="search-container">
+        <form id='search-form' action='/search' method='GET' onsubmit='return beforeSubmit(event, this);'>
+            <div class='inner-form'>
+                <div class='input-field first-wrap'>
+                    <div class="form-field__container">
+                        <input 
+                            type='text'
+                            value={query}
+                            name='query' 
+                            placeholder='Search for articles by author, journal or title' 
+                            required
+                        />
+                    </div>
+                </div>
+                <div class='input-field second-wrap'>
+                    <div class="form-field__container">
+                        <select name='category' required>
+                            {
+                                !category ? 
+                                <option disabled selected value="">Select Category</option>:
+                                <option disabled value="">Select Category</option>
+                            }
+                            {
+                                category === 'Title' ? 
+                                <option value='Title' selected>Title</option>:
+                                <option value='Title'>Title</option>
+                            }
+                            {
+                                category === 'Author' ? 
+                                <option value='Author' selected>Author</option>:
+                                <option value='Author'>Author</option>
+                            }
+                            {
+                                category === 'Journal' ? 
+                                <option value='Journal' selected>Journal</option>:
+                                <option value='Journal'>Journal</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class='input-field third-wrap'>
+                    <Button customIcon>
+                        SEARCH
+                        <Fragment slot="icon">
+                            <Icon name="ic:baseline-search" />
+                        </Fragment>
+                    </Button>
+                </div>
+            </div>
+            <div class='search__nav inner-form'>
+                <input
+                    type='text' 
+                    value={page}
+                    name='page'
+                />
+                {
+                    page != '0' &&
+                    <Button customIcon>
+                        <Fragment slot="icon">
+                            <Icon name="ic:baseline-chevron-left" />
+                        </Fragment>
+                        Previous
+                    </Button>
+                }
+                <Button customIcon>
+                    Next
+                    <Fragment slot="icon">
+                        <Icon name="ic:baseline-chevron-right" />
+                    </Fragment>
+                </Button>
+            </div>
+            <hr/>
+        </form>
+    </div>
+</Container>
+
+<script type="text/javascript">
+
+    function beforeSubmit(event, form){
+        var html = event.submitter.innerHTML.trim();
+        var input = form.elements["page"];
+        var page =input.value;
+
+
+        if (html.toLowerCase().startsWith("search")){
+            page = '0';
+        }else if (html.toLowerCase().startsWith("next")){
+            page = parseInt(page) + 1;
+        }else if (html.toLowerCase().startsWith("previous")){
+            page = parseInt(page) - 1;
+        }
+
+        input.value = page;
+
+        return true;
+    }
+</script>
+
+<style>
+    hr {
+        display: block;
+        height: 1px;
+        border: 2;
+        border-top: 1px solid;
+        border-color: var(--theme-surface-1);
+        margin: 1em 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .form-field__container input[type="text"],
+    .form-field__container input[type="email"],
+    .form-field__container input[type="date"],
+    .form-field__container input[type="tel"] {
+        width: 100%;
+        padding: 0.5rem;
+        border: 2px solid var(--form-field-border-color, #ccc);
+        color: var(--form-field-input-color, #000000);
+        border-radius: var(--form-field-border-radius, 0.25rem);
+        outline-style: none;
+    }
+
+    .form-field__container input:focus {
+        border: 2px solid var(--form-field-border-focus-color, #000);
+    }
+
+    .form-field__container select {
+        width: 100%;
+        padding: 0.5rem;
+        border: 2px solid var(--form-field-border-color, #ccc);
+        color: var(--form-field-input-color, #000000);
+        border-radius: var(--form-field-border-radius, 0.25rem);
+        outline-style: none;
+        font-size: 1rem;
+        font-family: inherit;
+        /* Fixes gloss effect on select dropdowns in Safari */
+        -webkit-appearance: none;
+    }
+
+    .form-field__container select:focus {
+        border: 2px solid var(--form-field-border-focus-color, #000);
+    }
+
+    .search__nav input{
+        display: none;
+    }
+
+    .icon-left{
+        float: left;
+    }
+</style>
