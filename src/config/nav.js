@@ -11,4 +11,8 @@ export const nav = [
 		title: 'About',
 		slug: '/about',
 	},
+	{
+		title: 'Search',
+		slug: '/search',
+	},
 ];
