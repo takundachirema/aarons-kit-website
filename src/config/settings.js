@@ -1,5 +1,5 @@
 export default {
-	title: `Aaron's Kit | A project to help authors join the Open Access movement`,
+	title: `Aaron's Kit | A project to liberate academic research`,
 	description: `A project that provides a scraper to retrieve research papers from JSTOR and then upload them to a database for others to access freely.`,
 	url: `https://odyssey-theme.littlesticks.dev`, // No trailing slash!
 	name: `Aaron's Kit`, // The short name of the business or brand name. Used for things like the copyright in the footer.

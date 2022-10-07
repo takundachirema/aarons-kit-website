@@ -1,11 +1,9 @@
 ---
 import { Icon } from 'astro-icon';
 import {
-	AnnouncementBar,
 	Button,
 	CustomerQuoteSection,
 	ThreeColumnTextSection,
-	YouTubeEmbedSection,
 	StickyTextImageSection,
 	CtaCardSection,
 } from '@littlesticks/odyssey-theme-components';
@@ -21,11 +19,11 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 <Layout>
 	<TextAndImageHero reversed>
 		<div slot="text-container">
-			<h1>Authors, it's time to join the Open Access Movement</h1>
+			<h1>It's time to join the Open Access Movement</h1>
 			<p>A tribute to Aaron Swartz</p>
 		</div>
 		<div slot="btns-container">
-			<Button href="/theme/get-started" customIcon
+			<Button href="/get-started" customIcon
 				>Get Started <Fragment slot="icon">
 					<Icon name="ic:baseline-chevron-right" />
 				</Fragment></Button
@@ -33,7 +31,7 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 		</div>
 		<picture slot="image-container">
 			<img
-				src="/assets/images/aaron_swartz.jpeg"
+				src="/assets/images/home/aaron_swartz_3.png"
 				alt="Aaron Swartz"
 				id="home-hero-image"
 			/>
@@ -48,27 +46,26 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 	<ThreeColumnTextSection>
 		<div slot="column-1-body">
 			<h2>What?</h2>
-			<p>
-				Aaron's Kit is a project to help authors who wants to retrieve their
-				published papers from JSTOR and donate them as part of the Open Access
-				movement.
+			<p> 
+				Aaron's Kit is a project aimed at helping authors, students, and researchers effortlessly 
+				retrieve published papers and donate them as part of the open access movement.
 			</p>
 		</div>
 		<Button href="/about" slot="column-1-cta" outlined>Learn More</Button>
 		<div slot="column-2-body">
 			<h2>Why?</h2>
 			<p>
-				Like Aaron Swartz, we strongly believe that knowledge should be free for
-				anyone to access and it should never be locked behind an expensive
-				paywall.
+				Like Aaron Swartz, we strongly believe that knowledge should be free for 
+				anyone to access and it should never be locked behind an expensive paywall.
 			</p>
 		</div>
-		<Button href="/aaron-swartz" slot="column-2-cta" outlined>Learn More</Button>
+		<Button href="/aaron-swartz" slot="column-2-cta" outlined>Learn More</Button
+		>
 		<div slot="column-3-body">
 			<h2>How?</h2>
 			<p>
-				We have a command line tool that scrapes research papers from JSTOR and
-				uploads them to our database from which people may query to get access.
+				We have a command line tool that scrapes research papers from JSTOR and uploads them 
+				to our database. Any user can read or download the available papers for free.
 			</p>
 		</div>
 		<Button href="/get-started" slot="column-3-cta" outlined>Learn More</Button>
@@ -78,9 +75,9 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 		background="var(--theme-surface-2)"
 		color="var(--theme-on-surface-2)"
 	>
-		<h2>Join the Open Access Movement</h2>
+		<h3>Are you a student, researcher, or author that believes in the liberation of knowledge?</h3>
 		<p>
-			We are here to help you every step of the way.
+			Find out how you can contribute
 		</p>
 		<Button href="/get-started" customIcon
 			>Get Started <Fragment slot="icon">

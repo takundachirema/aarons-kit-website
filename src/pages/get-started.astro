@@ -2,9 +2,14 @@
 import { Icon } from 'astro-icon';
 import {
 	Button,
-	StickyTextImageSection,
+	Container,
+	YouTubeEmbedSection,
 	CtaCardSection,
+	TextSection,
+	ThreeColumnTextSection,
+	StickyTextImageSection,
 } from '@littlesticks/odyssey-theme-components';
+
 import Layout from '../layouts/Page.astro';
 
 const seo = {
@@ -14,40 +19,117 @@ const seo = {
 ---
 
 <Layout {seo}>
-	<StickyTextImageSection>
-		<div slot="text-container">
-			<h2>Features</h2>
-			<h3>SEO</h3>
+	<TextSection>
+		<h1 style="text-align:center;">
+			Do you have JSTOR login credentials?
+		</h1>
+		<h3 style="text-align:center;">You can make a difference in 3 easy steps</h3>
+	</TextSection>
+
+	<CtaCardSection>
+		<div>
+			<h4>
+				Our command line tool makes it easy for you to donate research papers.
+			</h4>
 			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Est dolorem
-				tempore odio! Nemo consectetur ipsa aperiam similique maxime maiores
-				consequatur explicabo ut quibusdam fugiat corporis, dignissimos tenetur,
-				mollitia cumque. Velit. Lorem ipsum dolor sit amet consectetur
-				adipisicing elit. Est dolorem tempore odio! Nemo consectetur ipsa
-				aperiam similique maxime maiores consequatur explicabo ut quibusdam
-				fugiat corporis, dignissimos tenetur, mollitia cumque. Velit.
-			</p>
-			<h3>Responsive</h3>
-			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Est dolorem
-				tempore odio! Nemo consectetur ipsa aperiam similique maxime maiores
-				consequatur explicabo ut quibusdam fugiat corporis, dignissimos tenetur,
-				mollitia cumque. Velit.
-			</p>
-			<h3>Themeable</h3>
-			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Est dolorem
-				tempore odio! Nemo consectetur ipsa aperiam similique maxime maiores
-				consequatur explicabo ut quibusdam fugiat corporis, dignissimos tenetur,
-				mollitia cumque. Velit.
+				You simply specify the research that you want to donate, and the tool
+				will access, download and upload these papers to our database
+				automatically. This will grant you, and many other students,
+				researchers, and curious readers around the world unlimited free access
+				to hundreds of thousands of research articles that would otherwise be
+				inaccessible due to expensive paywalls.
 			</p>
 		</div>
-		<picture slot="image-container">
-			<img
-				src="/assets/images/aaron_swartz_2.jpeg"
-				alt="Astro Odyssey"
-				loading="lazy"
-			/>
-		</picture>
-	</StickyTextImageSection>
+		<Button href="/Search" customIcon>
+			Find an Article<Fragment slot="icon">
+				<Icon name="ic:baseline-chevron-right" />
+			</Fragment>
+		</Button>
+	</CtaCardSection>
+	
+
+	<ThreeColumnTextSection>
+		<div slot="column-1-body">
+			<h3>Step 1</h3>
+			<CtaCardSection background="var(--theme-surface-2)">
+				<h4>Confirm your credentials on JSTOR</h4>
+			</CtaCardSection>
+			<p>Make sure that you have valid JSTOR login credentials.</p>
+			<p>
+				You can confirm that your institution provides access by searching for
+				it on the JSTOR “institution search” page.
+			</p>
+			<div class="center-button">
+				<Button href="https://www.jstor.org/institutionSearch?redirectUri=%2F" newTab outlined>
+					Confirm Credentials
+				</Button>
+			</div>
+		</div>
+
+		<div slot="column-2-body">
+			<h3>Step 2</h3>
+			<CtaCardSection background="var(--theme-surface-2)">
+				<h4>Install the necessary dependencies</h4>
+			</CtaCardSection>
+			<p>
+				To run the tool, you will need Google Chrome and FFmpeg installed on
+				your computer.
+			</p>
+			<p>
+				If you don't have them installed, visit the Google Chrome and FFmpeg
+				downloads pages to install before moving on to the next step.
+			</p>
+			<div style="display:flex;">
+				<div class="dependencies-buttons">
+					<Button href="https://www.google.com/chrome/" newTab outlined>
+						Download Chrome
+					</Button>
+				</div>
+				<div style="width: 10%;"></div>
+				<div class="dependencies-buttons">
+					<Button href="https://ffmpeg.org/download.html" newTab outlined>
+						Download FFmpeg
+					</Button>
+				</div>
+			</div>
+		</div>
+
+		<div slot="column-3-body">
+			<h3>Step 3</h3>
+			<CtaCardSection background="var(--theme-surface-2)">
+				<h4>Download the executable and get started</h4>
+			</CtaCardSection>
+			<p>
+				Visit our GitHub repository and download the Aaron’s Kit Executable.
+			</p>
+			<p>
+				Double click on the executable to open and simply follow the prompts
+				that will assist you in finding the articles that you want to donate.
+			</p>
+			<div class="center-button">
+				<Button href="https://github.com/FinHubSA/AK-PDF-Scraper" newTab outlined>
+					Download Executable
+				</Button>
+			</div>
+		</div>
+	</ThreeColumnTextSection>
+
+	<TextSection>
+		<h2 style="text-align:center;">Learn how to use our tool</h2>
+		<YouTubeEmbedSection url="https://www.youtube.com/watch?v=-OhyBJxg9RA"></YouTubeEmbedSection>
+	</TextSection>
+
+
+
 </Layout>
+
+<style>
+	.center-button {
+		margin: auto;
+		width: 45%;
+	}
+
+	.dependencies-buttons {
+		min-width: 45%;
+	}
+</style>

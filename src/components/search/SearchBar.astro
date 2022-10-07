@@ -70,7 +70,7 @@ const {category, query, page} = Astro.props;
                     name='page'
                 />
                 {
-                    page != '0' &&
+                    parseInt(page) > 1 &&
                     <Button customIcon>
                         <Fragment slot="icon">
                             <Icon name="ic:baseline-chevron-left" />
@@ -78,12 +78,15 @@ const {category, query, page} = Astro.props;
                         Previous
                     </Button>
                 }
-                <Button customIcon>
-                    Next
-                    <Fragment slot="icon">
-                        <Icon name="ic:baseline-chevron-right" />
-                    </Fragment>
-                </Button>
+                {
+                    page != '0' &&
+                    <Button customIcon>
+                        Next
+                        <Fragment slot="icon">
+                            <Icon name="ic:baseline-chevron-right" />
+                        </Fragment>
+                    </Button>
+                }
             </div>
             <hr/>
         </form>
@@ -99,7 +102,7 @@ const {category, query, page} = Astro.props;
 
 
         if (html.toLowerCase().startsWith("search")){
-            page = '0';
+            page = '1';
         }else if (html.toLowerCase().startsWith("next")){
             page = parseInt(page) + 1;
         }else if (html.toLowerCase().startsWith("previous")){
