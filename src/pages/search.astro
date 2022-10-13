@@ -19,36 +19,51 @@ const seo = {
 const category = Astro.url.searchParams.get('category')! || '';
 const query = Astro.url.searchParams.get('query')! || '';
 const page = Astro.url.searchParams.get('page')! || '0';
+const page_size = 10
 
-var api = "https://api-service-mrz6aygprq-oa.a.run.app/api/";
+var api = "https://api-service-mrz6aygprq-oa.a.run.app/api/articles?page_size="+page_size+"&page="+page;
 
 if (category.toLowerCase() === 'title'){
-	api = api+'articles?title='+query;
+	api = api+'&title='+query;
 }else if (category.toLowerCase() === 'author'){
-	api = api+'articles?authorname='+query;
+	api = api+'&authorName='+query;
 }else if (category.toLowerCase() === 'journal'){
-	api = api+'articles?journalname='+query;
+	api = api+'&journalName='+query;
 }
 
 console.log(" ** params ** ", category +" "+query+" "+api);
 
-const response = await fetch(api);
+if (query){
+	const response = await fetch(api);
 
-var articles = []
-if (response.status === 200) {
-	articles = await response.json();
+	var articles = []
+	if (response.status === 200) {
+		articles = await response.json();
+	}
 }
-
-console.log('** article size **', articles.length)
 ---
 
 <Layout {seo}>
-	<SearchBar category={category} query={query} page={page}></SearchBar>
+	<div class='outer__search__container'>
+		<SearchBar category={category} query={query} page={page}></SearchBar>
 
-	<Container narrow={true}>
-		{articles?.map((article) => (
-			<Article article={article}></Article>
-		))}
-	</Container>
-
+		<Container narrow={true}>
+			{articles?.map((article) => (
+				<Article article={article}></Article>
+			))}
+		</Container>
+	</div>
 </Layout>
+
+<style>
+  .outer__search__container {
+    min-height: 90vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+  }
+
+  .outer__search__container .content__container{
+	
+  }
+</style>

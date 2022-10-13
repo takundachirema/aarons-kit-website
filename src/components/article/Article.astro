@@ -12,7 +12,7 @@ const {article} = Astro.props;
 var counter = 0
 ---
 
-<div narrow={true}
+<div class='article__container' narrow={true}
     <div class='article__title'>
         <h4>{article.title}</h4>
     </div>
@@ -37,6 +37,13 @@ var counter = 0
                 </Fragment>
             </Button>
         }
+        {
+            !article.bucketURL && 
+            <Button href="/get-started" slot="column-1-cta" outlined>
+                Contribute
+            </Button>
+        }
+        
     </div>
     <hr/>
 </div>
@@ -77,5 +84,15 @@ var counter = 0
         -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
         overflow: hidden;
+    }
+
+    .article__container {
+        min-width: 100vh;
+    }
+
+    @media screen and (max-width: 992px) {
+        .article__container {
+            min-width: 0vh;
+        }
     }
 </style>

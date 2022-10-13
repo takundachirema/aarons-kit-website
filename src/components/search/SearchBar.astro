@@ -17,17 +17,7 @@ const {category, query, page} = Astro.props;
     <div class="search-container">
         <form id='search-form' action='/search' method='GET' onsubmit='return beforeSubmit(event, this);'>
             <div class='inner-form'>
-                <div class='input-field first-wrap'>
-                    <div class="form-field__container">
-                        <input 
-                            type='text'
-                            value={query}
-                            name='query' 
-                            placeholder='Search for articles by author, journal or title' 
-                            required
-                        />
-                    </div>
-                </div>
+
                 <div class='input-field second-wrap'>
                     <div class="form-field__container">
                         <select name='category' required>
@@ -54,6 +44,19 @@ const {category, query, page} = Astro.props;
                         </select>
                     </div>
                 </div>
+
+                <div class='input-field first-wrap'>
+                    <div class="form-field__container">
+                        <input 
+                            type='text'
+                            value={query}
+                            name='query' 
+                            placeholder='Search for articles by author, journal or title' 
+                            required
+                        />
+                    </div>
+                </div>
+                
                 <div class='input-field third-wrap'>
                     <Button customIcon>
                         SEARCH
@@ -71,21 +74,39 @@ const {category, query, page} = Astro.props;
                 />
                 {
                     parseInt(page) > 1 &&
-                    <Button customIcon>
-                        <Fragment slot="icon">
-                            <Icon name="ic:baseline-chevron-left" />
-                        </Fragment>
-                        Previous
-                    </Button>
+                        <button class="btn astro-5VNEE24L" target="" rel="">
+                            <span class="custom-icon__span astro-5VNEE24L">
+                                <svg viewBox="0 0 24 24" class="astro-Z6IVC36F" astro-icon="ic:baseline-chevron-left">
+                                    <path fill="currentColor" d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+                                </svg>
+                            </span>
+                            Previous
+                        </button>
                 }
                 {
-                    page != '0' &&
-                    <Button customIcon>
-                        Next
-                        <Fragment slot="icon">
-                            <Icon name="ic:baseline-chevron-right" />
-                        </Fragment>
-                    </Button>
+                    parseInt(page) == 1 &&
+                        <button class="btn astro-5VNEE24L disabled" target="" rel="" disabled>
+                            <span class="custom-icon__span astro-5VNEE24L">
+                                <svg viewBox="0 0 24 24" class="astro-Z6IVC36F" astro-icon="ic:baseline-chevron-left">
+                                    <path fill="currentColor" d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+                                </svg>
+                            </span>
+                            Previous
+                        </button>
+                }
+                {
+                    parseInt(page) > 0 && <span>Page {page}</span>
+                }
+                {
+                    parseInt(page) > 0 &&
+                        <button class="btn astro-5VNEE24L" target="" rel="">
+                            Next
+                            <span class="custom-icon__span astro-5VNEE24L">
+                                <svg viewBox="0 0 24 24" class="astro-ZARP2IE3" astro-icon="ic:baseline-chevron-right">
+                                    <path fill="currentColor" d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                                </svg>
+                            </span>
+                        </button>
                 }
             </div>
             <hr/>
@@ -105,7 +126,7 @@ const {category, query, page} = Astro.props;
             page = '1';
         }else if (html.toLowerCase().startsWith("next")){
             page = parseInt(page) + 1;
-        }else if (html.toLowerCase().startsWith("previous")){
+        }else if (html.toLowerCase().endsWith("previous")){
             page = parseInt(page) - 1;
         }
 
@@ -166,5 +187,13 @@ const {category, query, page} = Astro.props;
 
     .icon-left{
         float: left;
+    }
+
+    .disabled {
+        background-color: var(--form-field-input-color, #ccc);
+    }
+
+    .disabled:hover {
+        background-color: #ccc;
     }
 </style>
