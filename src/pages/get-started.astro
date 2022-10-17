@@ -2,12 +2,10 @@
 import { Icon } from 'astro-icon';
 import {
 	Button,
-	Container,
 	YouTubeEmbedSection,
 	CtaCardSection,
 	TextSection,
 	ThreeColumnTextSection,
-	StickyTextImageSection,
 } from '@littlesticks/odyssey-theme-components';
 
 import Layout from '../layouts/Page.astro';
@@ -40,7 +38,7 @@ const seo = {
 				inaccessible due to expensive paywalls.
 			</p>
 		</div>
-		<Button href="/Search" customIcon>
+		<Button href="/search" customIcon>
 			Find an Article<Fragment slot="icon">
 				<Icon name="ic:baseline-chevron-right" />
 			</Fragment>
@@ -116,7 +114,7 @@ const seo = {
 
 	<TextSection>
 		<h2 style="text-align:center;">Learn how to use our tool</h2>
-		<YouTubeEmbedSection url="https://www.youtube.com/watch?v=-OhyBJxg9RA"></YouTubeEmbedSection>
+		<YouTubeEmbedSection rounded url="https://www.youtube.com/watch?v=-OhyBJxg9RA"></YouTubeEmbedSection>
 	</TextSection>
 
 
@@ -129,7 +127,4 @@ const seo = {
 		width: 45%;
 	}
 
-	.dependencies-buttons {
-		min-width: 45%;
-	}
 </style>

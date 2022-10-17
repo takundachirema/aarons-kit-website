@@ -1,9 +1,10 @@
 ---
 import { Icon } from 'astro-icon';
 import {
-	Button,
+	TextSection,
 	StickyTextImageSection,
-	CtaCardSection,
+	CustomerQuoteSection,
+	YouTubeEmbedSection,
 } from '@littlesticks/odyssey-theme-components';
 import Layout from '../layouts/Page.astro';
 
@@ -14,40 +15,191 @@ const seo = {
 ---
 
 <Layout {seo}>
+	<TextSection>
+		<h1 style="text-align:center;">A fallen hero, Aaron Swartz: celebrating the life of “the internet’s own boy”</h1>
+		<h4 style="text-align:center;"> 
+			At age 26, Aaron Swartz tragically took his own life. He had been unfairly and 
+			shamefully prosecuted and charged with 13 criminal counts for downloading millions 
+			of articles from an online journal library, called JSTOR, on MIT’s network. In 
+			his “Guerilla Open Access Manifesto”, Aaron wrote: “There is no justice in following 
+			unjust laws”. And it was exactly because of an unjust law that prosecutors were 
+			allowed to seek a maximum sentence of 35 years in prison and a fine of $1 million 
+			against Swartz.
+		</h4>
+		<p style="text-align:center;">
+			Without Aaron Swartz, the internet would not have existed in its current form. Aaron 
+			devoted his whole life to upholding the civil rights that serve as the foundation of 
+			our modern civilization. Let's go back in time to examine the life and accomplishments of the young internet 
+			pioneer and "hactivist," a boy who had the potential to transform the world.
+		</p>
+
+		<!-- 
+		<p>
+			Let's go back in time to examine the life and accomplishments of the young internet 
+			pioneer and "hactivist," a boy who had the potential to transform the world.
+
+		</p> -->
+
+		<!-- <h2>
+			<img
+				src="/assets/images/home/aaron_swartz_4.png"
+				alt="Astro Odyssey"
+				loading="lazy"
+				class="img_border"
+			/>
+		</h2> -->
+
+	</TextSection>
+
 	<StickyTextImageSection>
 		<div slot="text-container">
-			<h2>Features</h2>
-			<h3>SEO</h3>
-			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Est dolorem
-				tempore odio! Nemo consectetur ipsa aperiam similique maxime maiores
-				consequatur explicabo ut quibusdam fugiat corporis, dignissimos tenetur,
-				mollitia cumque. Velit. Lorem ipsum dolor sit amet consectetur
-				adipisicing elit. Est dolorem tempore odio! Nemo consectetur ipsa
-				aperiam similique maxime maiores consequatur explicabo ut quibusdam
-				fugiat corporis, dignissimos tenetur, mollitia cumque. Velit.
+			<h3>1999: The Info Network</h3>
+			<p>				
+				At age 12, Aaron created the Info Network, a user-generated encyclopedia. 
+				It was an unintentional clone of Wikipedia, before Wikipedia existed. Aaron 
+				went on to win the 2000 ArsDigita Prize for his website.
+				
 			</p>
-			<h3>Responsive</h3>
+
+			<h3>2000: RSS 1.0</h3>
 			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Est dolorem
-				tempore odio! Nemo consectetur ipsa aperiam similique maxime maiores
-				consequatur explicabo ut quibusdam fugiat corporis, dignissimos tenetur,
-				mollitia cumque. Velit.
+				Aaron became part of the working group that pioneered RSS (Really simple syndication), 
+				a web feed that allows users and applications to access updates to websites in a 
+				standardised, computer readable format. At the time, Aaron was 14 years old.
 			</p>
-			<h3>Themeable</h3>
-			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Est dolorem
-				tempore odio! Nemo consectetur ipsa aperiam similique maxime maiores
-				consequatur explicabo ut quibusdam fugiat corporis, dignissimos tenetur,
-				mollitia cumque. Velit.
+
+			<h3>2002: Creative Commons</h3>
+			<p>				
+				As a teenager, Aaron became one of the early architects of <a href="https://creativecommons.org/">Creative Commons (CC)</a> when 
+				he helped design the code layer to their licences. CC is a non-profit organisation with 
+				a global presence that offers free licences for creators to utilise when making their 
+				work accessible to the general public. These licences make it easier for the creator 
+				to grant upfront authorization for others to utilise the work under specific conditions. 
+				Aaron, later in life, was instrumental in creating the movement that helped CC achieve 
+				enormous success, as he helped advocate for a free and open internet.
 			</p>
 		</div>
 		<picture slot="image-container">
 			<img
-				src="/assets/images/aaron_swartz_2.jpeg"
+				src="/assets/images/home/Early Life.svg"
 				alt="Astro Odyssey"
 				loading="lazy"
 			/>
 		</picture>
 	</StickyTextImageSection>
+
+	<StickyTextImageSection reversed>
+		<div slot="text-container">
+			<h3>2005: Infogami and Reddit merge</h3>
+			<p>				
+				Aaron founded Infogami, a flexible content management system intended to produce rich and
+				aesthetically appealing websites during his freshman year at Stanford University. This project 
+				was funded by Y Combinator's first Summer Founders Program. Despite Infogami's lack of success, 
+				Aaron went on to merge it with <a href="https://www.reddit.com/">Reddit</a>, a now widely used social news aggregation website, earning 
+				him the distinction of Reddit co-founder. Aaron and his co-founders sold the company to Conde Nast 
+				just a year later for $10 million. The company is valued at $10 billion today. 
+				
+			</p>
+		</div>
+		<picture slot="image-container">
+			<img
+				src="/assets/images/home/Entrepreneurship.svg"
+				alt="Astro Odyssey"
+				loading="lazy"
+			/>
+		</picture>
+	</StickyTextImageSection>
+
+	<CustomerQuoteSection
+	quoteText="a piece of knowledge, unlike a piece of physical property, can be shared by large groups of people without making anybody poorer."
+	customerName="Aaron Swartz"
+	/>
+
+	<StickyTextImageSection>
+		<div slot="text-container">			
+			<h3>2006: The Open Library</h3>
+			<p>
+				Imagine a day in the future when you are not sent to Amazon when you search for a book online. 
+				<a href="https://openlibrary.org/">The Open Library</a>, a website with the goal of creating one 
+				location for every book ever written, attempts to accomplish just that. With the help of four 
+				other founders, Aaron launched this initiative, which is still active today.
+			</p>
+
+			<h3>2008: PACER download</h3>
+			<p>				
+				Aaron downloaded an estimated 2.8 million federal court documents from the PACER (Public Access to 
+				Court Electronic Records) database. At the time, users had to pay 8 cents per page accessed through 
+				PACER. Carl Malamud, who founded the nonprofit group <a href="https://public.resource.org/">Public.Resource.Org</a> 
+				contended that these documents should be free, because federal documents are not covered by copyright. 
+				He called for members of the public to upload their already paid for documents to the website to provide 
+				free access to all. Aaron answered his call and used a Perl computer script running on Amazon cloud 
+				servers to download the documents, using credentials belonging to a Sacramento library which offered 
+				free access to the PACER database.
+			</p>
+
+			<h3>2010: JSTOR download</h3>
+			<p>				
+				On September 25, 2010, Aaron Swarts used MIT guest login credentials and began sending hundreds of PDF 
+				download requests per minute to the JSTOR website, enough to slow the site's performance. Aaron connected 
+				his laptop to a networking switch in a controlled-access wiring closet at MIT. In the end, Aaron managed 
+				to download over 4 million PDF files, which he stored on a personal hard drive. Aaron was caught, and was 
+				indicted in a Boston court. According to the prosecution, the data were obtained with the intention of 
+				being distributed for free on P2P sharing websites.
+			</p>
+
+			<h3>2010: SOPA</h3>
+			<p>				
+				Aaron established the online movement Demand Progress, which successfully lobbied against the SOPA and PIPA 
+				proposals that would have censored the Internet. Although SOPA was designed to prevent Internet copyright 
+				infringement, it received harsh criticism because it would make it simpler for the US government to take down 
+				websites that were allegedly infringing on copyright and because it would put an unbearable load on Internet 
+				service providers. Additionally, because the internet would no longer be free from censorship if this bill 
+				had been implemented, it would have violated civil rights to freedom of expression and communication.
+			</p>
+
+		</div>
+		<picture slot="image-container">
+			<img
+				src="/assets/images/home/Activism.svg"
+				alt="Astro Odyssey"
+				loading="lazy"
+			/>
+		</picture>
+	</StickyTextImageSection>
+
+	<StickyTextImageSection reversed>
+		<div slot="text-container">
+			<h3>2013: Posthumous awards</h3>
+			<p>				
+				Aaron was posthumously awarded the American Library Association’s James Madison Award for being an outspoken 
+				advocate for public participation in government and unrestricted access to peer-reviewed scholarly articles; 
+				the Electronic Frontier Foundation (EFF) Pioneer Award for people who have made significant contributions to 
+				the empowerment of individuals in using computers; and the Internet Hall of Fame, an honorary lifetime achievement 
+				award administered by the Internet Society (ISOC) in recognition of individuals who have made significant 
+				contributions to the development and advancement of the Internet.
+				
+			</p>
+		</div>
+		<picture slot="image-container">
+			<img
+				src="/assets/images/home/Awards.svg"
+				alt="Astro Odyssey"
+				loading="lazy"
+			/>
+		</picture>
+	</StickyTextImageSection>
+
+	<TextSection class="img_border">
+		<h2 style="text-align:center;">Watch the full Aaron Swartz Documentary</h2>
+			<YouTubeEmbedSection rounded url="https://www.youtube.com/watch?v=9vz06QO3UkQ"></YouTubeEmbedSection>	
+	</TextSection>
+
+	<style>
+
+		.img_border {
+			border-radius: var(--theme-shape-radius)
+		}
+
+	</style>
+
 </Layout>
