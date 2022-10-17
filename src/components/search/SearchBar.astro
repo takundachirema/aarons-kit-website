@@ -18,7 +18,7 @@ const {category, query, page} = Astro.props;
         <form id='search-form' action='/search' method='GET' onsubmit='return beforeSubmit(event, this);'>
             <div class='inner-form'>
 
-                <div class='input-field second-wrap'>
+                <div class='input-field first-wrap'>
                     <div class="form-field__container">
                         <select name='category' required>
                             {
@@ -45,7 +45,7 @@ const {category, query, page} = Astro.props;
                     </div>
                 </div>
 
-                <div class='input-field first-wrap'>
+                <div class='input-field second-wrap'>
                     <div class="form-field__container">
                         <input 
                             type='text'

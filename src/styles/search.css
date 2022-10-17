@@ -30,12 +30,15 @@
 	display: block;
 	width: 100%;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	padding:20px;
+    display: flex;
+    align-items: center;
   }
   
   .search-container form .inner-form .input-field {
-	height: 68px;
+	display: -ms-flexbox;
+	align-items: center;
   }
   
   .search-container form .inner-form .input-field input.placeholder {
@@ -66,7 +69,7 @@
   
   .search-container form .inner-form .input-field.second-wrap {
 	margin: 5px;
-	min-width: 260px;
+	min-width: 420px;
   }
   
   .search-container form .inner-form .input-field.second-wrap .choices__inner {
@@ -207,9 +210,6 @@
 	}
 	.search-container form .inner-form .input-field.second-wrap {
 	  width: 100%;
-	}
-	.search-container form .inner-form .input-field.second-wrap input {
-	  border: 1px solid rgba(255, 255, 255, 0.3);
 	}
 	.search-container form .inner-form .input-field.third-wrap {
 	  margin-bottom: 0;
