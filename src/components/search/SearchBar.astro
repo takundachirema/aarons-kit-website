@@ -14,6 +14,13 @@ const {category, query, page} = Astro.props;
 ---
 
 <Container>
+    <span class="img-container">
+        <img
+        src="/public/Aarons_kit_logo_2.svg"
+        alt="Astro Odyssey"
+        loading="lazy"
+        /> 
+    </span>   
     <div class="search-container">
         <form id='search-form' action='/search' method='GET' onsubmit='return beforeSubmit(event, this);'>
             <div class='inner-form'>
@@ -59,7 +66,7 @@ const {category, query, page} = Astro.props;
                 
                 <div class='input-field third-wrap'>
                     <Button customIcon>
-                        SEARCH
+                        Search
                         <Fragment slot="icon">
                             <Icon name="ic:baseline-search" />
                         </Fragment>
@@ -195,5 +202,14 @@ const {category, query, page} = Astro.props;
 
     .disabled:hover {
         background-color: #ccc;
+    }
+
+    .img-container {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 15%;
+        height: auto;
+        padding-bottom: 60px;
     }
 </style>
