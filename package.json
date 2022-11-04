@@ -25,8 +25,5 @@
 		"date-fns": "^2.29.3",
 		"lit": "^2.4.1",
 		"prettier-plugin-astro": "^0.7.0"
-	},
-	"dependencies": {
-		"@astrojs/node": "^2.0.2"
 	}
 }

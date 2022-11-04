@@ -4,12 +4,9 @@ import mdx from '@astrojs/mdx';
 import image from '@astrojs/image';
 import lit from '@astrojs/lit';
 
-import node from "@astrojs/node";
-
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
-  site: 'https://odyssey-theme.littlesticks.dev/',
+  site: 'https://aarons-kit-website.vercel.app/',
   // Your public domain, e.g.: https://my-site.dev/. Used to generate sitemaps and canonical URLs.
   sitemap: true,
   // Generate sitemap (set to "false" to disable)
@@ -21,5 +18,5 @@ export default defineConfig({
       external: ['svgo']
     }
   },
-  adapter: node()
+
 });
