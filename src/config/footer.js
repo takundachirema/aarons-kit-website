@@ -19,7 +19,7 @@ export const footerLists = [
 				slug: '/search',
 			},
 			{
-				title: 'About',
+				title: 'About us',
 				slug: '/about',
 			},
 			{
