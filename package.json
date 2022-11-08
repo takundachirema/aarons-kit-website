@@ -24,7 +24,8 @@
 		"astro-icon": "^0.8.0",
 		"date-fns": "^2.29.3",
 		"lit": "^2.4.1",
-		"prettier-plugin-astro": "^0.7.0"
+		"prettier-plugin-astro": "^0.7.0",
+		"parse5": "^6.0.1"
 	},
 	"dependencies": {
 		"@astrojs/vercel": "^2.3.3"
