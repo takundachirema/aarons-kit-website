@@ -11,6 +11,7 @@ export interface Props {
 }
 
 import { nav } from '../config/nav.js';
+import Icon from 'astro-icon';
 
 const { seo } = Astro.props as Props;
 ---
@@ -20,7 +21,12 @@ const { seo } = Astro.props as Props;
 		<span slot="logo">
 			<Logo />
 		</span>
-		<Button slot="action-item" href="/get-started">Get Started</Button>
+		<div class="header-actions" slot="action-item">
+			<a class="github" href="https://github.com/FinHubSA/AK-PDF-Scraper/tree/bulk_downloads">
+				<Icon name="mdi:github" width="48px" height="48px" />
+			</a>
+			<Button href="/get-started">Get Started</Button>
+		</div>
 	</Header>
 	<div id="page">
 		<slot />
@@ -37,3 +43,14 @@ const { seo } = Astro.props as Props;
 		<Logo slot="logo" />
 	</Footer>
 </Layout>
+
+<style>
+	.header-actions {
+		display: flex;
+		align-items: center;
+		gap: 12px
+	}
+	.github {
+		display: flex;
+	}
+</style>
