@@ -33,10 +33,11 @@ if (category.toLowerCase() === 'title'){
 
 console.log(" ** params ** ", category +" "+query+" "+api);
 
+var articles = []
+
 if (query){
 	const response = await fetch(api);
 
-	var articles = []
 	if (response.status === 200) {
 		articles = await response.json();
 	}
@@ -48,9 +49,16 @@ if (query){
 		<SearchBar category={category} query={query} page={page}></SearchBar>
 
 		<Container narrow={true}>
-			{articles?.map((article) => (
-				<Article article={article}></Article>
-			))}
+			{query && 
+				(
+					articles.length > 0 ? articles.map((article) => (
+						<Article article={article}></Article>
+					)) 
+				:
+					<h3>No Articles Found</h3>
+				)
+			}
+			
 		</Container>
 	</div>
 </Layout>
