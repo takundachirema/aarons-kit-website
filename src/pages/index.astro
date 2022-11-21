@@ -44,7 +44,7 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 	/>
 
 	<ThreeColumnTextSection>
-		<div slot="column-1-body">
+		<div slot="column-1-body" class="column">
 			<h2>What?</h2>
 			<p> 
 				Aaron's Kit helps authors, students, and researchers to effortlessly retrieve 
@@ -52,7 +52,7 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 			</p>
 		</div>
 		<Button href="/about" slot="column-1-cta" outlined>Learn More</Button>
-		<div slot="column-2-body">
+		<div slot="column-2-body" class="column">
 			<h2>Why?</h2>
 			<p>
 				Like Aaron Swartz, we strongly believe that knowledge should be free for 
@@ -61,7 +61,7 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 		</div>
 		<Button href="/aaron-swartz" slot="column-2-cta" outlined>Learn More</Button
 		>
-		<div slot="column-3-body">
+		<div slot="column-3-body" class="column">
 			<h2>How?</h2>
 			<p>
 				Our command line tool helps you to scrape research papers from JSTOR and 
@@ -86,3 +86,9 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 		>
 	</CtaCardSection>
 </Layout>
+
+<style>
+	.column {
+		min-height: 256px;
+	}
+</style>
