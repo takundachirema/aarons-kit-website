@@ -1,0 +1,134 @@
+---
+import { Icon } from 'astro-icon';
+import {
+	Button,
+	CtaCardSection,
+    ThreeColumnTextSection,
+	TextSection,
+} from '@littlesticks/odyssey-theme-components';
+import Layout from '../layouts/Page.astro';
+const seo = {
+	title: 'Donate',
+	description: 'Learn how to donate or receive ALGO.',
+};
+import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astro';
+---
+
+
+<Layout {seo}>
+	<TextSection>
+		<h1 style="text-align:center;">
+			Donate ALGO
+		</h1>
+		<h3 style="text-align:center;">You can help keep the Aaron's Kit community alive by rewarding contributors for their hard work.</h3>
+	</TextSection>
+
+    <span class="img-container">
+		<img
+		src="/assets/images/donate/how this works white background no heading.svg"
+		alt="Astro Odyssey"
+		loading="lazy"
+		/>
+	</span>
+
+	<ThreeColumnTextSection>
+		<div slot="column-1-body" class="column">
+			<h2>What?</h2>
+			<p> 
+				You can donate ALGO (a cryptocurrency native to the Algorand blockchain) 
+                to our smart contract which periodically distributes a pot of donations to all 
+                the Aaron’s Kit users who have contributed research papers.
+			</p>
+		</div>
+		<Button href="https://www.algorand.foundation/the-algo" slot="column-1-cta" newTab outlined>What is ALGO?</Button>
+		
+        <div slot="column-2-body" class="column">
+			<h2>Why?</h2>
+			<p>
+				Your donation will reward Aaron’s Kit users for the time and effort 
+                they spend contributing research papers. 
+                The contribution of research papers fuels the Open Access Movement, and 
+                keeps the Aaron’s Kit community alive.
+			</p>
+		</div>
+        <Button href="/search" slot="column-2-cta" outlined>View our database</Button>
+
+		<div slot="column-3-body" class="column">
+			<h2>How?</h2>
+			<p>
+				You can donate by simply sending ALGO to the address of our smart contract. 
+            </p>
+            <p>
+                You may use the listed smart contract address or QR code shown in the 
+                section below.
+            </p>
+                
+			
+		</div>
+		<Button href="#donation_information" slot="column-3-cta" outlined>Learn how to donate</Button>
+	</ThreeColumnTextSection>
+
+    <TextAndImageHero reversed>
+        <div slot="text-container">
+            <ul>
+                <li><a id="donation_information">We recommend using </a> the <a href="https://perawallet.app/" class="astro-426S6YDN" target="_blank">Pera Wallet</a> to create an Algorand account.</li>
+                <li>To get ALGO to donate, we recommend researching the best practices of purchasing cryptocurrency that comply with your local jurisdiction. As a starting point, we recommend taking a look at <a href="https://www.binance.com" class="astro-426S6YDN" target="_blank">Binance</a> as they are well supported in many countries.</li>
+                <li>You donate by simply sending ALGO to the address of our smart contract. You may use the listed address or QR code.</li>
+            </ul>
+            <br>
+        </div>		
+        <picture slot="image-container">
+            <img
+                src="/assets/images/donate/Donor.svg"
+                alt="Aaron Swartz"
+                id="home-hero-image"
+            />
+        </picture>
+    </TextAndImageHero>
+
+    <TextAndImageHero>
+        <div slot="text-container">
+            <ul>
+                <li>You must have an Algorand Address to receive donations.</li>
+                <li>You will be prompted to create or provide an Algorand address when you contribute research papers.</li>
+            </ul>
+            <h4>You are rewarded as follows:</h4>
+            <p>donation received = (number of papers you scraped / total number of papers scraped by everyone) * (balance of smart contract - minimum balance requirement*)</p>
+            <br>
+            <div class="center-button">
+                <Button href="/get-started" customIcon>
+                    Become a contributor<Fragment slot="icon">
+                        <Icon name="ic:baseline-chevron-right" />
+                    </Fragment>
+                </Button>
+            </div>            
+        </div>
+
+
+        <picture slot="image-container">
+            <img
+                src="/assets/images/donate/Contributor.svg"
+                alt="Aaron Swartz"
+                id="home-hero-image"
+            />
+        </picture>
+    </TextAndImageHero>
+
+</Layout>
+
+<style>
+    .img-container {
+		display: block;
+		margin-left: 10%;
+		margin-right: 10%;
+		width: auto;
+		height: auto;
+		padding-top: 0px
+	}
+
+	.center-button {
+		margin: auto;
+		width: 60%;
+	}
+
+</style>
