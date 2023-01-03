@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon';
 import {
+    Container,
 	Button,
 	CtaCardSection,
     ThreeColumnTextSection,
@@ -23,13 +24,6 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 		<h3 style="text-align:center;">You can help keep the Aaron's Kit community alive by rewarding contributors for their hard work.</h3>
 	</TextSection>
 
-    <span class="img-container">
-		<img
-		src="/assets/images/donate/how this works white background no heading.svg"
-		alt="Astro Odyssey"
-		loading="lazy"
-		/>
-	</span>
 
 	<ThreeColumnTextSection>
 		<div slot="column-1-body" class="column">
@@ -57,16 +51,47 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 			<h2>How?</h2>
 			<p>
 				You can donate by simply sending ALGO to the address of our smart contract. 
-            </p>
-            <p>
+                <br>
+                <br>
                 You may use the listed smart contract address or QR code shown in the 
-                section below.
-            </p>
-                
-			
+                donation section below.
+            </p>			
 		</div>
 		<Button href="#donation_information" slot="column-3-cta" outlined>Learn how to donate</Button>
 	</ThreeColumnTextSection>
+
+    <CtaCardSection>
+		<div>
+			<h3>Making a donation: Smart contract information</h3>
+            <p>To make an ALGO donation you can use our smart contract address:</p>
+            <p><b>ZH6QHCFO4UKUHDKFMTJDAQDMEN<br class="hidden-ss">WOFRKAKQCOC4RWBE54MJKCOBXCPO6OHE</b></p>
+            
+            
+            <p>Or simply scan the below QR code with your Algorand wallet (e.g. Pera Wallet):</p>
+            <img
+                src="/assets/images/donate/Smart Contract QR.png"
+                alt="Smart Contract QR code"
+                id="home-hero-image"
+                class="center-img"
+            />
+            <br>
+			<p>
+				You can also view our smart contract on the explorer <a href="https://testnet.algoexplorer.io/address/ZH6QHCFO4UKUHDKFMTJDAQDMENWOFRKAKQCOC4RWBE54MJKCOBXCPO6OHE" class="astro-426S6YDN" target="_blank">here</a>.
+            </p>
+		</div>
+
+	</CtaCardSection>
+    <Container>
+        <h3 style="text-align:center">From scraping to distributing ALGO: how does this work?</h3>
+        <span class="img-container">
+            <img
+            src="/assets/images/donate/how this works 1.svg"
+            alt="How this works"
+            loading="lazy"
+            />
+        </span>
+    </Container>
+
 
     <TextAndImageHero reversed>
         <div slot="text-container">
@@ -77,23 +102,23 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
             </ul>
             <br>
         </div>		
-        <picture slot="image-container">
+        <picture  slot="image-container">
             <img
                 src="/assets/images/donate/Donor.svg"
-                alt="Aaron Swartz"
+                alt="Donor Information"
                 id="home-hero-image"
             />
         </picture>
     </TextAndImageHero>
 
-    <TextAndImageHero>
+    <TextAndImageHero reversed>
         <div slot="text-container">
             <ul>
                 <li>You must have an Algorand Address to receive donations.</li>
                 <li>You will be prompted to create or provide an Algorand address when you contribute research papers.</li>
             </ul>
-            <h4>You are rewarded as follows:</h4>
-            <p>donation received = (number of papers you scraped / total number of papers scraped by everyone) * (balance of smart contract - minimum balance requirement*)</p>
+            <h4 style="text-align:center">You are rewarded as follows:</h4>
+            <p style="text-align:center">donation received = (number of papers you scraped / total number of papers scraped by everyone) * (balance of smart contract - minimum balance requirement*)</p>
             <br>
             <div class="center-button">
                 <Button href="/get-started" customIcon>
@@ -108,7 +133,7 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
         <picture slot="image-container">
             <img
                 src="/assets/images/donate/Contributor.svg"
-                alt="Aaron Swartz"
+                alt="Contributor Information"
                 id="home-hero-image"
             />
         </picture>
@@ -118,17 +143,45 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 
 <style>
     .img-container {
-		display: block;
+        margin: 0 auto;
+        max-width: var(--container-max-width-narrow);
+        display: flex;
+		padding-top: 0px;
+		/* display: block;
 		margin-left: 10%;
-		margin-right: 10%;
+		margin-right: 13.5%;
 		width: auto;
 		height: auto;
-		padding-top: 0px
-	}
+		padding-top: 0px */
 
+	}
 	.center-button {
 		margin: auto;
-		width: 60%;
+		width: 65%;
 	}
+    .column {
+		min-height: 256px;
+	}
+    .center-img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 50%;
+		width: auto;
+		height: auto;
+	}
+    @media (min-width: 700px) {
+    .hidden-ss {
+        display: none !important;
+    }
+    }
+    .cta-card__container {
+        margin: 0 auto;
+        max-width: var(--container-max-width-narrow);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 
 </style>
