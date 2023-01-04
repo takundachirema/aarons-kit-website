@@ -8,8 +8,9 @@ import {
 	TextSection,
 } from '@littlesticks/odyssey-theme-components';
 import Layout from '../layouts/Page.astro';
+
 const seo = {
-	title: 'Donate',
+	title: "Aaron's Kit | Donate",
 	description: 'Learn how to donate or receive ALGO.',
 };
 import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astro';
@@ -33,8 +34,10 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
                 to our smart contract which periodically distributes a pot of donations to all 
                 the Aaron’s Kit users who have contributed research papers.
 			</p>
+            <div class="center-button">
+                <Button href="https://www.algorand.foundation/the-algo" slot="column-1-cta" newTab outlined>What is ALGO?</Button>
+            </div>
 		</div>
-		<Button href="https://www.algorand.foundation/the-algo" slot="column-1-cta" newTab outlined>What is ALGO?</Button>
 		
         <div slot="column-2-body" class="column">
 			<h2>Why?</h2>
@@ -44,8 +47,11 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
                 The contribution of research papers fuels the Open Access Movement, and 
                 keeps the Aaron’s Kit community alive.
 			</p>
+            <div class="center-button">
+                <Button href="/search" slot="column-2-cta" outlined>View our database</Button>
+            </div>
 		</div>
-        <Button href="/search" slot="column-2-cta" outlined>View our database</Button>
+
 
 		<div slot="column-3-body" class="column">
 			<h2>How?</h2>
@@ -55,21 +61,24 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
                 <br>
                 You may use the listed smart contract address or QR code shown in the 
                 donation section below.
-            </p>			
+            </p>
+            <div class="center-button">
+                <Button href="#donation_information" slot="column-3-cta" outlined>Learn how to donate</Button>
+            </div>			
 		</div>
-		<Button href="#donation_information" slot="column-3-cta" outlined>Learn how to donate</Button>
+
 	</ThreeColumnTextSection>
 
     <CtaCardSection>
 		<div>
-			<h3>Making a donation: Smart contract information</h3>
+			<h3><a id="algorand_address">Making a donation: Smart contract information</a></h3>
             <p>To make an ALGO donation you can use our smart contract address:</p>
             <p><b>ZH6QHCFO4UKUHDKFMTJDAQDMEN<br class="hidden-ss">WOFRKAKQCOC4RWBE54MJKCOBXCPO6OHE</b></p>
             
             
             <p>Or simply scan the below QR code with your Algorand wallet (e.g. Pera Wallet):</p>
             <img
-                src="/assets/images/donate/Smart Contract QR.png"
+                src="/assets/images/donate/SmartContractQR.png"
                 alt="Smart Contract QR code"
                 id="home-hero-image"
                 class="center-img"
@@ -81,16 +90,16 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 		</div>
 
 	</CtaCardSection>
-    <Container>
+    <TextSection>
         <h3 style="text-align:center">From scraping to distributing ALGO: how does this work?</h3>
         <span class="img-container">
             <img
-            src="/assets/images/donate/how this works 1.svg"
+            src="/assets/images/donate/HowThisWorks1.svg"
             alt="How this works"
             loading="lazy"
             />
         </span>
-    </Container>
+    </TextSection>
 
 
     <TextAndImageHero reversed>
@@ -98,7 +107,7 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
             <ul>
                 <li><a id="donation_information">We recommend using </a> the <a href="https://perawallet.app/" class="astro-426S6YDN" target="_blank">Pera Wallet</a> to create an Algorand account.</li>
                 <li>To get ALGO to donate, we recommend researching the best practices of purchasing cryptocurrency that comply with your local jurisdiction. As a starting point, we recommend taking a look at <a href="https://www.binance.com" class="astro-426S6YDN" target="_blank">Binance</a> as they are well supported in many countries.</li>
-                <li>You donate by simply sending ALGO to the address of our smart contract. You may use the listed address or QR code.</li>
+                <li>You donate by simply sending ALGO to the address of our smart contract. You may use the <a href = "#algorand_address">listed address or QR code</a>.</li>
             </ul>
             <br>
         </div>		
@@ -144,20 +153,14 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 <style>
     .img-container {
         margin: 0 auto;
-        max-width: var(--container-max-width-narrow);
+        /* max-width: var(--container-max-width-narrow); */
         display: flex;
 		padding-top: 0px;
-		/* display: block;
-		margin-left: 10%;
-		margin-right: 13.5%;
-		width: auto;
-		height: auto;
-		padding-top: 0px */
-
 	}
 	.center-button {
-		margin: auto;
-		width: 65%;
+		display: flex;
+  		justify-content: center;
+  		align-items: center;
 	}
     .column {
 		min-height: 256px;
