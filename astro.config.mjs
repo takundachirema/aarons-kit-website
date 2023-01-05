@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import image from '@astrojs/image';
 
-import vercel from '@astrojs/vercel/serverless';
+// import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 
@@ -21,5 +21,5 @@ export default defineConfig({
       external: ['svgo']
     }
   },
-  adapter: vercel()
+  // adapter: vercel()
 });

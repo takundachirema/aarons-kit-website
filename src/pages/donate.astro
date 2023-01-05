@@ -14,6 +14,48 @@ const seo = {
 	description: 'Learn how to donate or receive ALGO.',
 };
 import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astro';
+
+var apiSmartContractInfo = "https://api-service-mrz6aygprq-oa.a.run.app/api/donations/smartcontract-info"
+var apiSmartContractState = "https://api-service-mrz6aygprq-oa.a.run.app/api/donations/smartcontract-state"
+var apiAccounts = "https://api-service-mrz6aygprq-oa.a.run.app/api/accounts"
+
+console.log(" ** params ** ", apiSmartContractInfo, apiSmartContractState, apiAccounts);
+
+var amountForDist = null
+var smartContractInfo = null
+
+const responseSmartContractInfo = await fetch(apiSmartContractInfo);
+
+if (responseSmartContractInfo.status === 200) {
+    smartContractInfo = await responseSmartContractInfo.json();
+    amountForDist = smartContractInfo["amount_for_distribution"]/1000000
+
+}
+
+var smartContractState = null
+var totalDist = null
+
+const responseSmartContractState = await fetch(apiSmartContractState);
+
+if (responseSmartContractState.status === 200) {
+    smartContractState = await responseSmartContractState.json();
+    totalDist = smartContractState["total_distributed"]/1000000
+
+}
+
+var accounts = []
+var totalAccounts = null
+
+const responseAccounts = await fetch(apiAccounts);
+
+if (responseAccounts.status === 200) {
+    accounts = await responseAccounts.json();
+    totalAccounts = accounts.length
+
+
+}
+
+
 ---
 
 
@@ -23,7 +65,14 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 			Donate ALGO
 		</h1>
 		<h3 style="text-align:center;">You can help keep the Aaron's Kit community alive by rewarding contributors for their hard work.</h3>
-	</TextSection>
+	</TextSection> 
+    
+    <p>current ALGO to be distributed {amountForDist}</p>
+    <p>Total ALGO distributed so far {totalDist}</p>
+    <p>Total number of accounts that have contributed {totalAccounts}</p>
+    <div class="center-button">
+        <button id='distribute' onclick="distribute()">Distribute</button>
+    </div>
 
 
 	<ThreeColumnTextSection>
@@ -149,6 +198,48 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
     </TextAndImageHero>
 
 </Layout>
+
+<script is:inline>
+
+
+    function distribute() {
+
+        var apiDistribute = "https://api-service-mrz6aygprq-oa.a.run.app/api/donations/distribute?distributeToken=oMxlKWyIEOprvUlikQiuCUbWcXLlGyeajLtetxmeeKDSWLeQRV"
+
+        console.log(" ** params ** ", apiDistribute);
+
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() { 
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                console.log(xmlHttp.responseText);
+        }
+        xmlHttp.open("GET", apiDistribute, true); // true for asynchronous 
+        xmlHttp.send(null);
+
+        // var listTransactions = []
+        // var totalTransactions = null
+
+        // const responseDistribute = fetch(apiDistribute);
+
+        // if (responseDistribute.status !== 200) {
+        //     console.log('Looks like there was a problem. Status Code: ' + responseDistribute.status);
+        //     return;
+        // }
+
+        // listTransactions = await responseDistribute.json();
+        // totalTransactions = listTransactions.length
+
+        // if (responseDistribute.status == 200 && totalTransactions > 0) {
+        //     console.log('Looks like there is nothing to distribute');
+        //     return;
+
+        // }
+
+        // location.reload();
+
+    }
+
+</script>
 
 <style>
     .img-container {
