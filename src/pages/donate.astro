@@ -65,11 +65,29 @@ if (responseAccounts.status === 200) {
 			Donate ALGO
 		</h1>
 		<h3 style="text-align:center;">You can help keep the Aaron's Kit community alive by rewarding contributors for their hard work.</h3>
-	</TextSection> 
+	</TextSection>
+
+    <CtaCardSection>
+        <div class = "stats">
+            <div class = "align-stats">        
+                <p>{amountForDist}</p>
+                <p>ALGO in current donation pot</p>
+            </div>
+            <div class = "align-stats">
+                <p>{totalDist}</p>
+                <p>ALGO distributed to date</p>
+            </div>
+            <div class = "align-stats">
+                <p>{totalAccounts}</p>
+                <p>accounts contributing</p>
+            </div>        
+        </div>
+    </CtaCardSection>
+
+
+
     
-    <p>current ALGO to be distributed {amountForDist}</p>
-    <p>Total ALGO distributed so far {totalDist}</p>
-    <p>Total number of accounts that have contributed {totalAccounts}</p>
+
     <div class="center-button">
         <button id='distribute' onclick="distribute()">Distribute</button>
     </div>
@@ -139,6 +157,7 @@ if (responseAccounts.status === 200) {
 		</div>
 
 	</CtaCardSection>
+
     <TextSection>
         <h3 style="text-align:center">From scraping to distributing ALGO: how does this work?</h3>
         <span class="img-container">
@@ -276,6 +295,16 @@ if (responseAccounts.status === 200) {
         flex-direction: column;
         align-items: center;
         text-align: center;
+    }
+    .stats {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .align-stats {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
 </style>
