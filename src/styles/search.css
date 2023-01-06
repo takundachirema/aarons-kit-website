@@ -204,7 +204,7 @@
 	}
 	.search-container form .inner-form .input-field.first-wrap,
 	.search-container form .inner-form .input-field.second-wrap {
-		min-width:375px;
+		min-width: 100%;
 	}
 	.search-container form .inner-form .input-field.first-wrap .choices__inner {
 	  padding: 10px 15px;
