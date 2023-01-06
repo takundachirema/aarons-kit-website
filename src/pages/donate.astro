@@ -8,6 +8,7 @@
     } from '@littlesticks/odyssey-theme-components';
     import Layout from '../layouts/Page.astro';
     import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astro';
+    import '../styles/spinner.css';
 
     const seo = {
         title: "Aaron's Kit | Donate",
@@ -82,51 +83,69 @@
             their hard work.</h3>
     </TextSection>
 
-    <CtaCardSection background="var(--theme-surface-1)" color="var(--theme-on-surface-1)">
+    <div id="distribute-container">
+        <CtaCardSection background="var(--theme-surface-1)" color="var(--theme-on-surface-1)">
 
-        <div class = "stats"> 
-            <div class = "align-stats">
-                <h1>{totalDist}</h1>
-                <h4>ALGO distributed to date</h4>
-            </div>         
-            <div class = "align-stats">        
-                <h1>{amountForDist}</h1>
-                <h4>ALGO in current donation pot</h4>  
+            <div class="stats">
+                <div class="align-stats">
+                    <h1>{totalDist}</h1>
+                    <h4>ALGO distributed to date</h4>
+                </div>
+                <div class="align-stats">
+                    <h1>{amountForDist}</h1>
+                    <h4>ALGO in current donation pot</h4>
+                </div>
+                <div class="align-stats">
+                    <h1>{totalAccounts}</h1>
+                    <h4>Accounts contributing</h4>
+                </div>
             </div>
-            <div class = "align-stats">
-                <h1>{totalAccounts}</h1>
-                <h4>Accounts contributing</h4>
-            </div>        
-        </div>
 
-        <div>
-            <h4>Current pot will distribute in:
-            </h4>
-        </div>
+            <div>
+                <h4>Current pot will distribute in:
+                </h4>
+            </div>
 
-        <div id="countholder">
-            <div><span class="days" id="days"></span><div class="smalltext">Days</div></div>
-            <div><span class="hours" id="hours"></span><div class="smalltext">Hours</div></div>
-            <div><span class="minutes" id="minutes"></span><div class="smalltext">Minutes</div></div>
-            <div><span class="seconds" id="seconds"></span><div class="smalltext">Seconds</div></div>
-        </div>
+            <div id="countholder">
+                <div><span class="days" id="days"></span>
+                    <div class="smalltext">Days</div>
+                </div>
+                <div><span class="hours" id="hours"></span>
+                    <div class="smalltext">Hours</div>
+                </div>
+                <div><span class="minutes" id="minutes"></span>
+                    <div class="smalltext">Minutes</div>
+                </div>
+                <div><span class="seconds" id="seconds"></span>
+                    <div class="smalltext">Seconds</div>
+                </div>
+            </div>
 
-        <div>
-            <h5>*Distribution will only take place IF ALGO in current donation pot is > 1.
-            </h5>
-        </div>
+            <div>
+                <h5>*Distribution will only take place IF ALGO in current donation pot is > 1.
+                </h5>
+            </div>
 
-        <form class="center-button" id='search-form' action='/donate' method='GET'>
-            <input id="distribute" name="distribute" value="true" type="hidden">
-            <button class="btn astro-5VNEE24L" target="" rel="">
-                Distribute ALGO
-            </button>
-        </form>
-        <br>
-        <span><h5>{distributionMessage}</h5></span>
+            <form class="center-button" id='search-form' action='/donate' method='GET'>
+                <input id="distribute" name="distribute" value="true" type="hidden">
 
-    </CtaCardSection>
+                <button onclick="processDistribution(this)" class="btn astro-5VNEE24L" type="button" target="" rel="">
+                    <span id="label">Distribute ALGO</span>
+                    <div id="loading" class="hidden lds-ellipsis">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </button>
+            </form>
+            <br>
+            <span>
+                <h5>{distributionMessage}</h5>
+            </span>
 
+        </CtaCardSection>
+    </div>
 
     <ThreeColumnTextSection>
         <div slot="column-1-body" class="column">
@@ -176,7 +195,8 @@
         <div>
             <h3><a id="algorand_address">Making a donation: Smart contract information</a></h3>
             <p>To make an ALGO donation you can use our smart contract address:</p>
-            <p><b>ZH6QHCFO4UKUHDKFMTJDAQDMEN<br class="hidden-ss">WOFRKAKQCOC4RWBE54MJKCOBX<br class="hidden-ss">CPO6OHE</b></p>
+            <p><b>ZH6QHCFO4UKUHDKFMTJDAQDMEN<br class="hidden-ss">WOFRKAKQCOC4RWBE54MJKCOBX<br
+                        class="hidden-ss">CPO6OHE</b></p>
 
 
             <p>Or simply scan the below QR code with your Algorand wallet (e.g. Pera Wallet):</p>
@@ -215,14 +235,16 @@
             <br>
         </div>
         <picture class="astro-426S6YDN" slot="image-container">
-            <img src="/assets/images/donate/Donor3.svg" alt="Donor Information" id="home-hero-image" class="astro-426S6YDN">
+            <img src="/assets/images/donate/Donor3.svg" alt="Donor Information" id="home-hero-image"
+                class="astro-426S6YDN">
         </picture>
     </TextAndImageHero>
 
 
     <TextAndImageHero reversed>
         <div slot="text-container">
-            <h4 style="text-align:center">You are a contributor if you want to scrape papers and receive ALGO donations.</h4>
+            <h4 style="text-align:center">You are a contributor if you want to scrape papers and receive ALGO donations.
+            </h4>
             <ul>
                 <li>
                     You must have an Algorand Address to receive donations.
@@ -269,6 +291,15 @@
     var secTime = null;
     var ticker = null;
 
+    function processDistribution(element) {
+        const loading = element.querySelector('#loading')
+        const label = element.querySelector('#label')
+        label.innerHTML = "Distributing";
+        loading.style.display = "block";
+        element.form.submit();
+        element.disabled = true;
+    }
+
     function getSeconds() {
         var nowDate = new Date();
         var dy = 0; //Sunday through Saturday, 0 to 6
@@ -279,15 +310,15 @@
             0,
             0,
             0); //20 out of 24 hours = 8pm
-        
+
         var curtime = nowDate.getTime(); //current time
         var atime = countertime.getTime(); //countdown time
-        var diff = parseInt((atime - curtime)/1000);
+        var diff = parseInt((atime - curtime) / 1000);
         if (diff > 0) {
             curday = dy - nowDate.getDay()
         }
         else {
-            curday = dy - nowDate.getDay() -1
+            curday = dy - nowDate.getDay() - 1
         } //after countdown time
         if (curday < 0) {
             curday += 7;
@@ -301,43 +332,43 @@
 
     function startTimer(secs) {
         secTime = parseInt(secs);
-        ticker = setInterval("tick()",1000);
+        ticker = setInterval("tick()", 1000);
         tick(); //initial count display
     }
 
     function tick() {
         var secs = secTime;
-        if (secs>0) {
+        if (secs > 0) {
             secTime--;
         }
         else {
             clearInterval(ticker);
             getSeconds(); //start over
         }
-    
-        
-        var days = Math.floor(secs/86400);
+
+
+        var days = Math.floor(secs / 86400);
         secs %= 86400;
-        var hours= Math.floor(secs/3600);
+        var hours = Math.floor(secs / 3600);
         secs %= 3600;
-        var mins = Math.floor(secs/60);
+        var mins = Math.floor(secs / 60);
         secs %= 60;
 
-        
+
 
         //update the time display
         document.getElementById("days").innerHTML = curday;
-        document.getElementById("hours").innerHTML = ((hours < 10 ) ? "0" : "" ) + hours;
-        document.getElementById("minutes").innerHTML = ( (mins < 10) ? "0" : "" ) + mins;
-        document.getElementById("seconds").innerHTML = ( (secs < 10) ? "0" : "" ) + secs;
+        document.getElementById("hours").innerHTML = ((hours < 10) ? "0" : "") + hours;
+        document.getElementById("minutes").innerHTML = ((mins < 10) ? "0" : "") + mins;
+        document.getElementById("seconds").innerHTML = ((secs < 10) ? "0" : "") + secs;
 
 
         if (curday == 1) {
-            document.getElementById("days_text").innerHTML = "Day"
-        } 
+            // document.getElementById("days_text").innerHTML = "Day"
+        }
     }
 
-    window.onload = function() {
+    window.onload = function () {
         getSeconds();
     };
 
@@ -351,14 +382,17 @@
         display: flex;
         padding-top: 0px;
     }
+
     .center-button {
         display: flex;
         justify-content: center;
         align-items: center;
     }
+
     .column {
         min-height: 256px;
     }
+
     .center-img {
         display: block;
         margin-left: auto;
@@ -367,11 +401,13 @@
         width: auto;
         height: auto;
     }
+
     @media (min-width: 700px) {
         .hidden-ss {
             display: none !important;
         }
     }
+
     .cta-card__container {
         margin: 0 auto;
         max-width: var(--container-max-width-narrow);
@@ -379,22 +415,25 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-    }    
+    }
+
     /* For Mobile */
     @media screen and (max-width: 540px) {
         .stats {
-        justify-content: space-between;
-        width: 100%;
+            justify-content: space-between;
+            width: 100%;
         }
     }
+
     /* For Tablets */
     @media screen and (min-width: 540px) {
         .stats {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
         }
     }
+
     .align-stats {
         display: flex;
         flex-direction: column;
@@ -406,11 +445,12 @@
 		margin-right: 2%;
   		margin-left: 2%;
 	}
-    #countholder .link{
+
+    #countholder .link {
         margin-top: 40px;
     }
- 
-    #countholder a{
+
+    #countholder a {
         display: inline-block;
         color: #fff;
         font-size: 20px;
@@ -419,12 +459,12 @@
         border-radius: 10px;
         text-decoration: none;
     }
- 
-    #countholder a:hover{
+
+    #countholder a:hover {
         background: #487;
     }
-    
-    #countholder{
+
+    #countholder {
         font-family: var(--theme-font-family-sans);
         color: #000000;
         display: inline-block;
@@ -432,29 +472,28 @@
         text-align: center;
         font-size: 48px;
         background-color: #000000;
-        padding:20px;
+        padding: 20px;
         border-radius: 20px;
-        margin-bottom:30px;
+        margin-bottom: 30px;
         line-height: 1.4;
     }
-    
-    
-    #countholder > div{
+
+
+    #countholder>div {
         padding: 4px 10px;
         border-radius: 10px;
         background: #f2f2f2;
         display: inline-block;
     }
-    
-    #countholder div > span{
+
+    #countholder div>span {
         border-radius: 3px;
         background: #f2f2f2;
         display: inline-block;
     }
-    
-    #countholder .smalltext{
+
+    #countholder .smalltext {
         padding-top: 5px;
         font-size: 16px;
     }
-
 </style>
