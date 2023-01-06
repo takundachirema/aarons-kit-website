@@ -1,7 +1,6 @@
 ---
     import { Icon } from 'astro-icon';
     import {
-        Container,
         Button,
         CtaCardSection,
         ThreeColumnTextSection,
@@ -112,6 +111,11 @@
             <div><span class="seconds" id="seconds"></span><div class="smalltext">Seconds</div></div>
         </div>
 
+        <div>
+            <h5>*Distribution will only take place IF ALGO in current donation pot is > 1
+            </h5>
+        </div>
+
         <form class="center-button" id='search-form' action='/donate' method='GET'>
             <input id="distribute" name="distribute" value="true" type="hidden">
             <button class="btn astro-5VNEE24L" target="" rel="">
@@ -188,7 +192,7 @@
 
     </CtaCardSection>
     <TextSection>
-        <h3 style="text-align:center">From scraping to distributing ALGO: how does this work?</h3>
+        <h3 style="text-align:center">Learn more: the donation process</h3>
         <span class="img-container">
             <img src="/assets/images/donate/HowThisWorks1.svg" alt="How this works" loading="lazy" />
         </span>
@@ -196,6 +200,7 @@
 
     <TextAndImageHero reversed>
         <div slot="text-container">
+            <h4 style="text-align:center">You are a donor if you want to donate ALGO.</h4>
             <ul>
                 <li><a id="donation_information">We recommend using </a> the <a href="https://perawallet.app/"
                         class="astro-426S6YDN" target="_blank">Pera Wallet</a> to create an Algorand account.</li>
@@ -216,6 +221,7 @@
 
     <TextAndImageHero reversed>
         <div slot="text-container">
+            <h4 style="text-align:center">You are a contributor if you want to scrape papers and receive ALGO donations.</h4>
             <ul>
                 <li>You must have an Algorand Address to receive donations.</li>
                 <li>You will be prompted to create or provide an Algorand address when you contribute research papers.
