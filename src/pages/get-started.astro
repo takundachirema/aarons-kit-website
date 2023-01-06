@@ -27,7 +27,7 @@ const seo = {
 		<div>
 			<h3>Do you have JSTOR login credentials?</h3>
 			<h4>
-				Our command line tool makes it easy for you to contribute research papers.
+				Our command line tool makes it easy for you to contribute research papers. 
 			</h4>
 			<p>
 				You simply specify the research that you want to contribute, and the tool
@@ -36,6 +36,9 @@ const seo = {
 				researchers, and curious readers around the world unlimited free access
 				to hundreds of thousands of research articles that would otherwise be
 				inaccessible due to expensive paywalls.
+			</p>
+			<p>Plus, as an added bonus, you can opt in to <a
+				href="#rewarded">be rewarded</a> for your contributions!
 			</p>
 		</div>
 		<br>
@@ -114,6 +117,42 @@ const seo = {
 		</div>
 	</ThreeColumnTextSection>
 
+	<CtaCardSection>
+		<h3><a id="rewarded"></a>You can be rewarded for your contributions!</h3>
+		<h4>
+			Each week, our smart contract distributes ALGO (cryptocurrency) to everyone who has 
+			contributed research papers to the Aaron's Kit database.
+		</h4>
+		
+		<ul style="text-align:left;"> 
+			<p style="text-align:center;"><u><b>How does this work?</b></u></p>
+			<li>
+				During <b>step 3</b>, upon launching the executable, you will be given the choice to opt
+				in to receive donations.
+			</li>
+			<li>
+				Next, simply follow the promps that will assist you in creating or providing an Algorand 
+				account.
+			</li>
+			<li>
+				Finally, wait for ALGO to be distributed into your account. This will happen every Sunday at 00:00 AM. 
+			</li>			
+		</ul>
+		<br>
+		<div class="center-button-2">
+			<Button href="/donate" customIcon>
+				Learn more<Fragment slot="icon">
+					<Icon name="ic:baseline-chevron-right" />
+				</Fragment>
+			</Button>
+		</div>
+	</CtaCardSection>
+
+	<TextSection>
+		<h5 style="text-align:center;" class="margin-p">
+			*We are in the process of testing our scraping tool and are looking for anyone with JSTOR access to assist. If you would like to help, please sign up <a href ="https://docs.google.com/forms/d/e/1FAIpQLSetzV9tRcIGahJiUHc-DMy6xmNtG0mTs_R7WTrL5mRMDH2eYA/viewform" target="_blank">here</a>.
+		</h5>
+	</TextSection>
 	<!-- <TextSection>
 		<h2 style="text-align:center;">Learn how to use our tool</h2>
 		<YouTubeEmbedSection rounded url="https://www.youtube.com/watch?v=-OhyBJxg9RA"></YouTubeEmbedSection>
@@ -127,6 +166,15 @@ const seo = {
 	.center-button {
 		margin: auto;
 		width: 45%;
+	}
+	.center-button-2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+	.margin-p {
+		margin-right: 2%;
+  		margin-left: 2%;
 	}
 
 </style>
