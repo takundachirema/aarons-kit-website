@@ -202,14 +202,12 @@
 	.search-container form .inner-form .input-field input {
 	  padding: 10px 15px;
 	}
-	.search-container form .inner-form .input-field.first-wrap {
-	  width: 100%;
+	.search-container form .inner-form .input-field.first-wrap,
+	.search-container form .inner-form .input-field.second-wrap {
+		min-width: 100%;
 	}
 	.search-container form .inner-form .input-field.first-wrap .choices__inner {
 	  padding: 10px 15px;
-	}
-	.search-container form .inner-form .input-field.second-wrap {
-	  width: 100%;
 	}
 	.search-container form .inner-form .input-field.third-wrap {
 	  margin-bottom: 0;

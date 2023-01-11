@@ -1,0 +1,499 @@
+---
+    import { Icon } from 'astro-icon';
+    import {
+        Button,
+        CtaCardSection,
+        ThreeColumnTextSection,
+        TextSection,
+    } from '@littlesticks/odyssey-theme-components';
+    import Layout from '../layouts/Page.astro';
+    import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astro';
+    import '../styles/spinner.css';
+
+    const seo = {
+        title: "Aaron's Kit | Donate",
+        description: 'Learn how to donate or receive ALGO.',
+    };
+
+    const distribute = Astro.url.searchParams.get('distribute')! || '';
+
+    var apiSmartContractInfo = "https://api-service-mrz6aygprq-oa.a.run.app/api/donations/smartcontract-info"
+    var apiSmartContractState = "https://api-service-mrz6aygprq-oa.a.run.app/api/donations/smartcontract-state"
+    var apiAccounts = "https://api-service-mrz6aygprq-oa.a.run.app/api/accounts"
+    var apiDistribute = "https://api-service-mrz6aygprq-oa.a.run.app/api/donations/distribute?distributeToken=oMxlKWyIEOprvUlikQiuCUbWcXLlGyeajLtetxmeeKDSWLeQRV"
+
+    var amountForDist = null
+    var smartContractInfo = null
+    var transactions = []
+    var distributionMessage = ''
+
+    if (distribute.toLowerCase() === 'true') {
+        const responseDistribute = await fetch(apiDistribute);
+        if (responseDistribute.status === 200) {
+
+            var responseText = await responseDistribute.text();
+            transactions = responseText ? JSON.parse(responseText) : [];
+
+            if (responseText) {
+                distributionMessage = "Distribution Complete! " + transactions.length + " transactions processed.";
+            } else {
+                distributionMessage = "Distribution cannot run. Current pot does not exceed minimum threshold."
+            }
+        } else {
+            distributionMessage = "Distribution Failed."
+        }
+    }
+
+    const responseSmartContractInfo = await fetch(apiSmartContractInfo);
+
+    if (responseSmartContractInfo.status === 200) {
+        smartContractInfo = await responseSmartContractInfo.json();
+        amountForDist = (smartContractInfo["amount_for_distribution"] / 1000000).toFixed(4)
+    }
+
+    var smartContractState = null
+    var totalDist = null
+
+    const responseSmartContractState = await fetch(apiSmartContractState);
+
+    if (responseSmartContractState.status === 200) {
+        smartContractState = await responseSmartContractState.json();
+        totalDist = (smartContractState["total_distributed"] / 1000000).toFixed(4)
+
+    }
+
+    var accounts = []
+    var totalAccounts = null
+
+    const responseAccounts = await fetch(apiAccounts);
+
+    if (responseAccounts.status === 200) {
+        accounts = await responseAccounts.json();
+        totalAccounts = accounts.length
+    }
+
+---
+
+<Layout {seo}>
+    <TextSection>
+        <h1 style="text-align:center;">
+            Donate ALGO
+        </h1>
+        <h3 style="text-align:center;">You can help keep the Aaron's Kit community alive by rewarding contributors for
+            their hard work.</h3>
+    </TextSection>
+
+    <div id="distribute-container">
+        <CtaCardSection background="var(--theme-surface-1)" color="var(--theme-on-surface-1)">
+
+            <div class="stats">
+                <div class="align-stats">
+                    <h1>{totalDist}</h1>
+                    <h4>ALGO distributed to date</h4>
+                </div>
+                <div class="align-stats">
+                    <h1>{amountForDist}</h1>
+                    <h4>ALGO in current donation pot</h4>
+                </div>
+                <div class="align-stats">
+                    <h1>{totalAccounts}</h1>
+                    <h4>Accounts contributing</h4>
+                </div>
+            </div>
+
+            <div>
+                <h4>Current pot will distribute in:
+                </h4>
+            </div>
+
+            <div id="countholder">
+                <div><span class="days" id="days"></span>
+                    <div class="smalltext">Days</div>
+                </div>
+                <div><span class="hours" id="hours"></span>
+                    <div class="smalltext">Hours</div>
+                </div>
+                <div><span class="minutes" id="minutes"></span>
+                    <div class="smalltext">Minutes</div>
+                </div>
+                <div><span class="seconds" id="seconds"></span>
+                    <div class="smalltext">Seconds</div>
+                </div>
+            </div>
+
+            <div>
+                <h5>*Distribution will only take place IF ALGO in current donation pot is > 1.
+                </h5>
+            </div>
+
+            <form class="center-button" id='search-form' action='/donate' method='GET'>
+                <input id="distribute" name="distribute" value="true" type="hidden">
+
+                <button onclick="processDistribution(this)" class="btn astro-5VNEE24L" type="button" target="" rel="">
+                    <span id="label">Distribute ALGO</span>
+                    <div id="loading" class="hidden lds-ellipsis">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </button>
+            </form>
+            <br>
+            <span>
+                <h5>{distributionMessage}</h5>
+            </span>
+
+        </CtaCardSection>
+    </div>
+
+    <ThreeColumnTextSection>
+        <div slot="column-1-body" class="column">
+            <h2>What?</h2>
+            <p>
+                You can donate ALGO (a cryptocurrency native to the Algorand blockchain)
+                to our smart contract which periodically distributes a pot of donations to all
+                the Aaron’s Kit users who have contributed research papers.
+            </p>
+            <div class="center-button">
+                <Button href="https://www.algorand.foundation/the-algo" slot="column-1-cta" newTab outlined>What is
+                    ALGO?</Button>
+            </div>
+        </div>
+
+        <div slot="column-2-body" class="column">
+            <h2>Why?</h2>
+            <p>
+                Your donation will reward Aaron’s Kit users for the time and effort
+                they spend contributing research papers.
+                The contribution of research papers fuels the Open Access Movement, and
+                keeps the Aaron’s Kit community alive.
+            </p>
+            <div class="center-button">
+                <Button href="/search" slot="column-2-cta" outlined>View our database</Button>
+            </div>
+        </div>
+
+
+        <div slot="column-3-body" class="column">
+            <h2>How?</h2>
+            <p>
+                You can donate by simply sending ALGO to the address of our smart contract.
+                <br>
+                <br>
+                You may use the listed smart contract address or QR code shown in the
+                donation section below.
+            </p>
+            <div class="center-button">
+                <Button href="#donation_information" slot="column-3-cta" outlined>Learn how to donate</Button>
+            </div>
+        </div>
+
+    </ThreeColumnTextSection>
+
+    <CtaCardSection background="var(--theme-surface-1)" color="var(--theme-on-surface-1)">
+        <div>
+            <h3><a id="algorand_address">Making a donation: Smart contract information</a></h3>
+            <p>To make an ALGO donation you can use our smart contract address:</p>
+            <p><b>ZH6QHCFO4UKUHDKFMTJDAQDMEN<br class="hidden-ss">WOFRKAKQCOC4RWBE54MJKCOBX<br
+                        class="hidden-ss">CPO6OHE</b></p>
+
+
+            <p>Or simply scan the below QR code with your Algorand wallet (e.g. Pera Wallet):</p>
+            <img src="/assets/images/donate/SmartContractQR.jpeg" alt="Smart Contract QR code" id="home-hero-image"
+                class="center-img" />
+            <br>
+            <p>
+                You can also view our smart contract on the explorer <a
+                    href="https://testnet.algoexplorer.io/address/ZH6QHCFO4UKUHDKFMTJDAQDMENWOFRKAKQCOC4RWBE54MJKCOBXCPO6OHE"
+                    class="astro-426S6YDN" target="_blank">here</a>.
+            </p>
+            <h5>*Our smart contract is currently not audited.</h5>
+        </div>
+
+    </CtaCardSection>
+    <TextSection>
+        <h3 style="text-align:center">Learn more: the donation process</h3>
+        <span class="img-container">
+            <img src="/assets/images/donate/HowThisWorks1.svg" alt="How this works" loading="lazy" />
+        </span>
+    </TextSection>
+
+    <TextAndImageHero reversed>
+        <div slot="text-container">
+            <h4 style="text-align:center">You are a donor if you want to donate ALGO.</h4>
+            <ul>
+                <li><a id="donation_information">We recommend using </a> the <a href="https://perawallet.app/"
+                        class="astro-426S6YDN" target="_blank">Pera Wallet</a> to create an Algorand account.</li>
+                <li>To get ALGO to donate, we recommend researching the best practices of purchasing cryptocurrency that
+                    comply with your local jurisdiction. As a starting point, we recommend taking a look at <a
+                        href="https://www.binance.com" class="astro-426S6YDN" target="_blank">Binance</a> as they are
+                    well supported in many countries.</li>
+                <li>You donate by simply sending ALGO to the address of our smart contract. You may use the <a
+                        href="#algorand_address">listed address or QR code</a>.</li>
+            </ul>
+            <br>
+        </div>
+        <picture class="astro-426S6YDN" slot="image-container">
+            <img src="/assets/images/donate/Donor3.svg" alt="Donor Information" id="home-hero-image"
+                class="astro-426S6YDN">
+        </picture>
+    </TextAndImageHero>
+
+
+    <TextAndImageHero reversed>
+        <div slot="text-container">
+            <h4 style="text-align:center">You are a contributor if you want to scrape papers and receive ALGO donations.
+            </h4>
+            <ul>
+                <li>
+                    You must have an Algorand Address to receive donations.
+                </li>
+                <li>
+                    You will be prompted to create or provide an Algorand address when you contribute 
+                    research papers.
+                </li>
+                <li>
+                    To access your funds link your account to a wallet. We recommend using the <a href="https://perawallet.app/"
+                    class="astro-426S6YDN" target="_blank">Pera Wallet</a>.
+                </li>
+            </ul>
+            <h4 style="text-align:center">You are rewarded as follows:</h4>
+            <p style="text-align:center">donation received = (number of papers you scraped / total number of papers
+                scraped by everyone) * (balance of smart contract - minimum balance requirement*)</p>
+            <br>
+            <div class="center-button">
+                <Button href="/get-started" customIcon>
+                    Become a contributor<Fragment slot="icon">
+                        <Icon name="ic:baseline-chevron-right" />
+                    </Fragment>
+                </Button>
+            </div>
+        </div>
+
+
+        <picture slot="image-container">
+            <img src="/assets/images/donate/Contributor3.svg" alt="Contributor Information" id="home-hero-image" />
+        </picture>
+    </TextAndImageHero>
+
+    <TextSection>
+        <h5 style="text-align:center;" class="margin-p">
+            *We are in the process of testing our scraping tool and are looking for anyone with JSTOR access to assist. If you would like to help, please sign up <a href ="https://docs.google.com/forms/d/e/1FAIpQLSetzV9tRcIGahJiUHc-DMy6xmNtG0mTs_R7WTrL5mRMDH2eYA/viewform" target="_blank">here</a>.
+        </h5>
+    </TextSection>
+
+</Layout>
+
+<script is:inline>
+
+    var curday = null;
+    var secTime = null;
+    var ticker = null;
+
+    function processDistribution(element) {
+        const loading = element.querySelector('#loading')
+        const label = element.querySelector('#label')
+        label.innerHTML = "Distributing";
+        loading.style.display = "block";
+        element.form.submit();
+        element.disabled = true;
+    }
+
+    function getSeconds() {
+        var nowDate = new Date();
+        var dy = 0; //Sunday through Saturday, 0 to 6
+        var countertime = new Date(
+            nowDate.getFullYear(),
+            nowDate.getMonth(),
+            nowDate.getDate(),
+            0,
+            0,
+            0); //20 out of 24 hours = 8pm
+
+        var curtime = nowDate.getTime(); //current time
+        var atime = countertime.getTime(); //countdown time
+        var diff = parseInt((atime - curtime) / 1000);
+        if (diff > 0) {
+            curday = dy - nowDate.getDay()
+        }
+        else {
+            curday = dy - nowDate.getDay() - 1
+        } //after countdown time
+        if (curday < 0) {
+            curday += 7;
+        } //already after countdown time, switch to next week
+        if (diff <= 0) {
+            diff += (86400 * 7)
+        }
+
+        startTimer(diff);
+    }
+
+    function startTimer(secs) {
+        secTime = parseInt(secs);
+        ticker = setInterval("tick()", 1000);
+        tick(); //initial count display
+    }
+
+    function tick() {
+        var secs = secTime;
+        if (secs > 0) {
+            secTime--;
+        }
+        else {
+            clearInterval(ticker);
+            getSeconds(); //start over
+        }
+
+
+        var days = Math.floor(secs / 86400);
+        secs %= 86400;
+        var hours = Math.floor(secs / 3600);
+        secs %= 3600;
+        var mins = Math.floor(secs / 60);
+        secs %= 60;
+
+
+
+        //update the time display
+        document.getElementById("days").innerHTML = curday;
+        document.getElementById("hours").innerHTML = ((hours < 10) ? "0" : "") + hours;
+        document.getElementById("minutes").innerHTML = ((mins < 10) ? "0" : "") + mins;
+        document.getElementById("seconds").innerHTML = ((secs < 10) ? "0" : "") + secs;
+
+
+        if (curday == 1) {
+            // document.getElementById("days_text").innerHTML = "Day"
+        }
+    }
+
+    window.onload = function () {
+        getSeconds();
+    };
+
+</script>
+
+
+<style>
+    .img-container {
+        margin: 0 auto;
+        /* max-width: var(--container-max-width-narrow); */
+        display: flex;
+        padding-top: 0px;
+    }
+
+    .center-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .column {
+        min-height: 256px;
+    }
+
+    .center-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        width: auto;
+        height: auto;
+    }
+
+    @media (min-width: 700px) {
+        .hidden-ss {
+            display: none !important;
+        }
+    }
+
+    .cta-card__container {
+        margin: 0 auto;
+        max-width: var(--container-max-width-narrow);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* For Mobile */
+    @media screen and (max-width: 540px) {
+        .stats {
+            justify-content: space-between;
+            width: 100%;
+        }
+    }
+
+    /* For Tablets */
+    @media screen and (min-width: 540px) {
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+    }
+
+    .align-stats {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 7%;
+        padding-bottom: 7%;
+    }
+    .margin-p {
+		margin-right: 2%;
+  		margin-left: 2%;
+	}
+
+    #countholder .link {
+        margin-top: 40px;
+    }
+
+    #countholder a {
+        display: inline-block;
+        color: #fff;
+        font-size: 20px;
+        padding: 20px;
+        background: #265;
+        border-radius: 10px;
+        text-decoration: none;
+    }
+
+    #countholder a:hover {
+        background: #487;
+    }
+
+    #countholder {
+        font-family: var(--theme-font-family-sans);
+        color: #000000;
+        display: inline-block;
+        font-weight: 100;
+        text-align: center;
+        font-size: 48px;
+        background-color: #000000;
+        padding: 20px;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        line-height: 1.4;
+    }
+
+
+    #countholder>div {
+        padding: 4px 10px;
+        border-radius: 10px;
+        background: #f2f2f2;
+        display: inline-block;
+    }
+
+    #countholder div>span {
+        border-radius: 3px;
+        background: #f2f2f2;
+        display: inline-block;
+    }
+
+    #countholder .smalltext {
+        padding-top: 5px;
+        font-size: 16px;
+    }
+</style>

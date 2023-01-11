@@ -1,5 +1,7 @@
+
 export const nav = [
 	{
+		
 		title: 'Home',
 		slug: '/',
 	},
@@ -8,11 +10,15 @@ export const nav = [
 		slug: '/search',
 	},
 	{
-		title: 'About us',
+		title: 'About Us',
 		slug: '/about',
 	},
 	{
 		title: 'Aaron Swartz',
 		slug: '/aaron-swartz',
+	},
+	{
+		title: 'Donate',
+		slug: '/donate',
 	},
 ];

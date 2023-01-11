@@ -1,46 +1,43 @@
 ---
-import Layout from '../layouts/Page.astro';
-import SearchBar from '../components/search/SearchBar.astro';
-import Article from '../components/article/Article.astro';
+	import Layout from '../layouts/Page.astro';
+	import SearchBar from '../components/search/SearchBar.astro';
+	import Article from '../components/article/Article.astro';
+	import {
+		Container,
+	} from '@littlesticks/odyssey-theme-components';
+	import '../styles/article.css';
 
-import { Icon } from 'astro-icon';
-import {
-	Container,
-	AnnouncementBar,
-} from '@littlesticks/odyssey-theme-components';
+	const seo = {
+		title: "Aaron's Kit | Search",
+		description: 'Search for papers',
+	};
 
-import '../styles/article.css';
+	const category = Astro.url.searchParams.get('category')! || '';
+	const query = Astro.url.searchParams.get('query')! || '';
+	const page = Astro.url.searchParams.get('page')! || '0';
+	const page_size = 10
 
-const seo = {
-	title: 'Search',
-	description: 'Search for papers',
-};
+	var api = "https://api-service-mrz6aygprq-oa.a.run.app/api/articles?page_size=" + page_size + "&page=" + page;
 
-const category = Astro.url.searchParams.get('category')! || '';
-const query = Astro.url.searchParams.get('query')! || '';
-const page = Astro.url.searchParams.get('page')! || '0';
-const page_size = 10
+	if (category.toLowerCase() === 'title') {
+		api = api + '&title=' + query;
+	} else if (category.toLowerCase() === 'author') {
+		api = api + '&authorName=' + query;
+	} else if (category.toLowerCase() === 'journal') {
+		api = api + '&journalName=' + query;
+	}
 
-var api = "https://api-service-mrz6aygprq-oa.a.run.app/api/articles?page_size="+page_size+"&page="+page;
-
-if (category.toLowerCase() === 'title'){
-	api = api+'&title='+query;
-}else if (category.toLowerCase() === 'author'){
-	api = api+'&authorName='+query;
-}else if (category.toLowerCase() === 'journal'){
-	api = api+'&journalName='+query;
-}
-
-console.log(" ** params ** ", category +" "+query+" "+api);
-
-if (query){
-	const response = await fetch(api);
+	console.log(" ** params ** ", category + " " + query + " " + api);
 
 	var articles = []
-	if (response.status === 200) {
-		articles = await response.json();
+
+	if (query) {
+		const response = await fetch(api);
+
+		if (response.status === 200) {
+			articles = await response.json();
+		}
 	}
-}
 ---
 
 <Layout {seo}>
@@ -48,22 +45,25 @@ if (query){
 		<SearchBar category={category} query={query} page={page}></SearchBar>
 
 		<Container narrow={true}>
-			{articles?.map((article) => (
-				<Article article={article}></Article>
-			))}
+			{query &&
+			(
+			articles.length > 0 ? articles.map((article) => (
+			<Article article={article}></Article>
+			))
+			:
+			<h3>No Articles Found</h3>
+			)
+			}
+
 		</Container>
 	</div>
 </Layout>
 
 <style>
-  .outer__search__container {
-    min-height: 90vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-  }
-
-  .outer__search__container .content__container{
-	
-  }
+	.outer__search__container {
+		min-height: 90vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+	}
 </style>

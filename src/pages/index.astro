@@ -1,22 +1,23 @@
 ---
 import { Icon } from 'astro-icon';
 import {
+	TextSection,
 	Button,
 	CustomerQuoteSection,
 	ThreeColumnTextSection,
-	StickyTextImageSection,
 	CtaCardSection,
 } from '@littlesticks/odyssey-theme-components';
 import Layout from '../layouts/Page.astro';
 import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astro';
 
-// const seo = {
-// 	title: 'Landing Page #1 | Astro Odyssey Theme',
-// 	description: 'Landing Page #1 | Astro Odyssey Theme',
-// };
+const seo = {
+	title: "Aaron's Kit",
+	description: "An Introduction to Aaron's Kit",
+};
 ---
 
-<Layout>
+
+<Layout {seo}>
 	<TextAndImageHero reversed>
 		<div slot="text-container">
 			<h1>It's time to join the Open Access Movement</h1>
@@ -31,12 +32,33 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 		</div>		
 		<picture slot="image-container">
 			<img
-				src="/assets/images/home/aaron_swartz_3.png"
+				src="/assets/images/index/AaronSwartz1.png"
 				alt="Aaron Swartz"
 				id="home-hero-image"
 			/>
 		</picture>
 	</TextAndImageHero>
+
+	<TextSection>	
+		<h3 style="text-align:center">Our call to action</h3>
+		<p style="text-align:justify" class="margin-p">
+			Each year US taxpayers spend <b>$140 billion</b> in support of academic research. 
+			However, they cannot access this research for free because large publishing houses like Elsevier 
+			lock it behind expensive paywalls. University libraries have to spend a massive portion 
+			of their budgets, <b>61.5%</b> in 2016, to access publicly funded research via digital journals 
+			and databases provided by publishing houses. This allows publishing houses to make huge profits, 
+			with profit margins never dipping below <b>30%</b>.
+		</p>
+		
+		<p style="text-align:justify" class="margin-p">
+			Open Access (OA) is a broad international movement and seeks to grant free and immediate online 
+			access to academic research outputs such as journal articles, books and data. Aaron's Kit shares 
+			the vision of Open Access and strives to become the world's first and largest repository of complete 
+			journals behind paywalls that will be available to the public for free.
+
+		</p>
+	</TextSection>
+	
 
 	<CustomerQuoteSection
 		quoteText="With enough of us, around the world, we'll not just send a strong message opposing the privatization of knowledge - we'll make it a thing of the past."
@@ -44,38 +66,46 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 	/>
 
 	<ThreeColumnTextSection>
-		<div slot="column-1-body">
+		<div slot="column-1-body" class="column">
 			<h2>What?</h2>
 			<p> 
 				Aaron's Kit helps authors, students, and researchers to effortlessly retrieve 
-				published papers and contribute them to the open access movement.
+				published papers and contribute them to the Open Access Movement.
 			</p>
+			<div class="center-button">
+				<Button href="/about" slot="column-1-cta" outlined>Learn More</Button>
+			</div>
 		</div>
-		<Button href="/about" slot="column-1-cta" outlined>Learn More</Button>
-		<div slot="column-2-body">
+		
+		<div slot="column-2-body" class="column">
 			<h2>Why?</h2>
 			<p>
-				Like Aaron Swartz, we strongly believe that knowledge should be free for 
-				anyone to access and it should never be locked behind an expensive paywall.
+				Like the famous internet hactivist Aaron Swartz, we believe that knowledge 
+				should be free to all and should not be locked behind expensive paywalls.
 			</p>
+			<div class="center-button">
+				<Button href="/aaron-swartz" slot="column-2-cta" outlined>Learn More</Button>
+			</div>
 		</div>
-		<Button href="/aaron-swartz" slot="column-2-cta" outlined>Learn More</Button
-		>
-		<div slot="column-3-body">
+		
+		<div slot="column-3-body" class="column">
 			<h2>How?</h2>
 			<p>
 				Our command line tool helps you to scrape research papers from JSTOR and 
 				upload them to a free database. Anyone can access this database for free.
 			</p>
+			<div class="center-button">
+				<Button href="/get-started" slot="column-3-cta" outlined>Learn More</Button>
+			</div>
 		</div>
-		<Button href="/get-started" slot="column-3-cta" outlined>Learn More</Button>
+		
 	</ThreeColumnTextSection>
 
 	<CtaCardSection
 		background="var(--theme-surface-2)"
 		color="var(--theme-on-surface-2)"
-	>
-		<h3>Are you a student, researcher, or author that believes in the liberation of knowledge?</h3>
+	>	
+	<h3>Are you a student, researcher, or author that believes in the liberation of knowledge?</h3>
 		<p>
 			Find out how you can contribute
 		</p>
@@ -85,4 +115,25 @@ import TextAndImageHero from '../components/sections/heros/TextAndImageHero.astr
 			</Fragment></Button
 		>
 	</CtaCardSection>
+
+	<TextSection>
+		<h5 style="text-align:center;" class="margin-p">
+			*We are in the process of testing our scraping tool and are looking for anyone with JSTOR access to assist. If you would like to help, please sign up <a href ="https://docs.google.com/forms/d/e/1FAIpQLSetzV9tRcIGahJiUHc-DMy6xmNtG0mTs_R7WTrL5mRMDH2eYA/viewform" target="_blank">here</a>.
+		</h5>
+	</TextSection>
 </Layout>
+
+<style>
+	.column {
+		min-height: 256px;
+	}
+	.margin-p {
+		margin-right: 2%;
+  		margin-left: 2%;
+	}
+	.center-button {
+		display: flex;
+  		justify-content: center;
+  		align-items: center;
+	}
+</style>

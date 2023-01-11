@@ -17,6 +17,9 @@
 	--theme-surface-2: #a1c0b0;
 	--theme-on-surface-2: #000;
 
+	--theme-surface-3: #f2f2f2;
+	--theme-on-surface-3: rgba(18, 40, 23, 0.929);
+
 	/* Theme Shapes */
 	/* Set this to 0 if you want all of the rounded cards, images, etc to be straight edges */
 	--theme-shape-radius: clamp(1rem, 2rem, 3rem);
