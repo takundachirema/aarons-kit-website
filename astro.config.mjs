@@ -21,5 +21,5 @@ export default defineConfig({
       external: ['svgo']
     }
   },
-  // adapter: vercel()
+  adapter: vercel()
 });
